@@ -1,0 +1,14 @@
+{
+  "name": "stealth-scraper",
+  "version": "1.0.0",
+  "description": "Bot evasion scraper for GameStop Power Packs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0",
+    "playwright-extra": "^4.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}

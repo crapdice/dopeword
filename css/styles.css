@@ -1,0 +1,767 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&family=Chivo+Mono:wght@300;400;700&display=swap');
+
+:root {
+    --gs-red: #E81E24;
+    --gs-red-hover: #ff333a;
+    --bg-dark: #000000;
+    --bg-elevated: #111111;
+    --bg-tertiary: #1a1a1a;
+    --text-primary: rgb(234, 234, 234);
+    --text-secondary: #a0a0a0;
+    --text-tertiary: #666666;
+    --border-color: #333;
+
+    --font-main: 'Chivo Mono', monospace;
+    --font-heading: 'Chivo Mono', monospace;
+    /* Site uses Chivo Mono for headings too */
+
+    --shadow-buy-btn: 0px 0px 14px 0px rgba(231, 35, 24, 0.5);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* --- Tailwind Utility Shims --- */
+
+/* Typography */
+.font-barlow {
+    font-family: var(--font-heading);
+}
+
+.font-chivoMono {
+    font-family: var(--font-main);
+}
+
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+.text-\[10px\]\/\[12px\] {
+    font-size: 10px;
+    line-height: 12px;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.leading-none {
+    line-height: 1;
+}
+
+.text-primary {
+    color: var(--text-primary);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+.text-tertiary {
+    color: var(--text-tertiary);
+}
+
+.text-white {
+    color: #fff;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.whitespace-nowrap {
+    white-space: nowrap;
+}
+
+/* Layout & Flexbox */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+.shrink-0 {
+    flex-shrink: 0;
+}
+
+.flex-1 {
+    flex: 1 1 0%;
+}
+
+.grid {
+    display: grid;
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.gap-1 {
+    gap: 0.25rem;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+/* Spacing & Sizing */
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.h-14 {
+    height: 3.5rem;
+}
+
+.w-14 {
+    width: 3.5rem;
+}
+
+.w-28 {
+    width: 7rem;
+}
+
+.w-16 {
+    width: 4rem;
+}
+
+.h-2 {
+    height: 0.5rem;
+}
+
+.h-12 {
+    height: 3rem;
+}
+
+.min-w-28 {
+    min-width: 7rem;
+}
+
+.min-h-\[90px\] {
+    min-height: 90px;
+}
+
+.min-h-\[56px\] {
+    min-height: 56px;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.mt-6 {
+    margin-top: 1.5rem;
+}
+
+.mb-1 {
+    margin-bottom: 0.25rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+.px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.px-5 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+.px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.pt-2 {
+    padding-top: 0.5rem;
+}
+
+.pt-6 {
+    padding-top: 1.5rem;
+}
+
+.pb-4 {
+    padding-bottom: 1rem;
+}
+
+/* Positioning */
+.relative {
+    position: relative;
+}
+
+.sticky {
+    position: sticky;
+}
+
+.bottom-0 {
+    bottom: 0;
+}
+
+.top-0 {
+    top: 0;
+}
+
+.z-10 {
+    z-index: 10;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.overflow-y-auto {
+    overflow-y: auto;
+}
+
+/* Appearance */
+.hidden {
+    display: none !important;
+}
+
+.block {
+    display: block;
+}
+
+.rounded-xl {
+    border-radius: 0.75rem;
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.rounded-full {
+    border-radius: 9999px;
+}
+
+.border {
+    border-width: 1px;
+    solid;
+}
+
+.border-2 {
+    border-width: 2px;
+    solid;
+}
+
+.border-t {
+    border-top-width: 1px;
+    solid;
+}
+
+.border-primary {
+    border-color: var(--border-color);
+}
+
+.border-secondary {
+    border-color: #222;
+}
+
+.border-\[\#FFFFFF\] {
+    border-color: #ffffff;
+}
+
+.border-\[\#D20505\] {
+    border-color: #D20505;
+}
+
+.bg-elevated {
+    background-color: var(--bg-elevated);
+}
+
+.bg-tertiary {
+    background-color: var(--bg-tertiary);
+}
+
+.bg-brand {
+    background-color: var(--gs-red);
+}
+
+.bg-border-secondary {
+    background-color: #333;
+}
+
+.bg-\[\#D20505\] {
+    background-color: #D20505;
+}
+
+.bg-black\/20 {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.box-border {
+    box-sizing: border-box;
+}
+
+.opacity-20 {
+    opacity: 0.2;
+}
+
+.backdrop-blur-sm,
+.backdrop-blur-md {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Shadows */
+.shadow-\[0_0_15px_rgba\(210\,5\,5\,0\.4\)\] {
+    box-shadow: var(--shadow-buy-btn);
+}
+
+/* Transitions */
+.transition {
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-colors {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+}
+
+.duration-500 {
+    transition-duration: 500ms;
+}
+
+/* States */
+.hover\:border-\[\#FFFFFF\]:hover {
+    border-color: #ffffff;
+}
+
+.hover\:text-secondary:hover {
+    color: var(--text-secondary);
+}
+
+.hover\:bg-red-600:hover {
+    background-color: #dc2626;
+}
+
+.focus\:outline-none:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    .md\:block {
+        display: block;
+    }
+
+    .md\:pt-10 {
+        padding-top: 2.5rem;
+    }
+
+    .md\:text-\[26px\] {
+        font-size: 26px;
+    }
+
+    .md\:mt-0 {
+        margin-top: 0;
+    }
+
+    .md\:mb-5 {
+        margin-bottom: 1.25rem;
+    }
+
+    .md\:text-xs\/\[14\.4px\] {
+        font-size: 0.75rem;
+        line-height: 14.4px;
+    }
+
+    .md\:h-14 {
+        height: 3.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .lg\:mt-10 {
+        margin-top: 2.5rem;
+    }
+
+    .lg\:rounded-3xl {
+        border-radius: 1.5rem;
+    }
+
+    .lg\:bg-transparent {
+        background-color: transparent;
+    }
+
+    .lg\:p-6 {
+        padding: 1.5rem;
+    }
+
+    .lg\:pt-6 {
+        padding-top: 1.5rem;
+    }
+}
+
+
+/* --- Custom Structural Styles --- */
+
+/* Main Header */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 64px;
+    background: rgba(10, 10, 10, 0.95);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.logo-container {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.gs-logo {
+    color: var(--gs-red);
+}
+
+.user-nav a {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-left: 1.5rem;
+}
+
+.user-nav a:hover {
+    color: var(--text-primary);
+}
+
+/* Main Grid Layout */
+/* Main Grid Layout - Resetting restricted height/overflow to allow scrolling */
+main {
+    display: block;
+    width: 100%;
+    /* Remove fixed height to allow scrolling */
+    height: auto;
+    min-height: 100vh;
+    max-width: 1920px;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+@media (max-width: 1024px) {
+    main {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow: visible;
+    }
+}
+
+/* Left Column */
+.pack-selection {
+    overflow-y: auto;
+    /* Allow stage to scroll if needed */
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.stage-container {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.stage-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.stage-overlay-text {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--gs-red);
+}
+
+.chase-section {
+    margin-top: 2rem;
+}
+
+.chase-grid {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+.chase-card-item {
+    min-width: 140px;
+    background: var(--bg-tertiary);
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.chase-card-img {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #333;
+}
+
+/* Right Sidebar Specifics */
+.controls-sidebar {
+    height: 100%;
+    /* Fill the grid cell */
+    /* Remove overflow here, let the inner div handle it */
+    padding-left: 0;
+}
+
+/* The inner container of the sidebar */
+.controls-sidebar>div {
+    /* Corresponds to: flex h-full flex-col border ... */
+    height: 100%;
+    max-height: 100%;
+    /* Constrain to parent height */
+}
+
+/* Custom Scrollbar for the sidebar content */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #111;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1.5rem;
+}
+
+.pack-envelope {
+    width: 220px;
+    height: 320px;
+    margin: 0 auto 2rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.pack-logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.pack-label {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.btn-cta {
+    background: var(--gs-red);
+    color: white;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: none;
+    font-weight: 700;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.btn-cta:hover {
+    background: var(--gs-red-hover);
+}
+
+/* Animation */
+.shaking {
+    animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(2deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    75% {
+        transform: rotate(-2deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.card-image {
+    width: 200px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    animation: popIn 0.5s ease;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

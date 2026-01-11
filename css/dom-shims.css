@@ -1,0 +1,362 @@
+/* DOM-Specific Shims for Strict Recreation */
+.bg-elevated {
+    background-color: var(--bg-elevated);
+}
+
+.backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+}
+
+.top-15 {
+    top: 3.75rem;
+}
+
+.min-h-\[calc\(100vh_-_56px\)\] {
+    min-height: calc(100vh - 56px);
+}
+
+.lg\:w-\[402px\] {
+    width: 402px;
+}
+
+.lg\:grid-cols-\[1fr_402px\] {
+    grid-template-columns: 1fr 402px !important;
+}
+
+.aspect-\[1\/1\] {
+    aspect-ratio: 1 / 1;
+}
+
+.lg\:aspect-\[1\.3527777777777779\] {
+    aspect-ratio: 1.3527777777777779;
+}
+
+.aspect-\[4\/3\] {
+    aspect-ratio: 4/3;
+}
+
+.lg\:aspect-\[1\.8\] {
+    aspect-ratio: 1.8;
+}
+
+.lg\:aspect-\[2\.4\] {
+    aspect-ratio: 2.4;
+}
+
+.lg\:rounded-3xl {
+    border-radius: 1.5rem;
+}
+
+.lg\:pb-10 {
+    padding-bottom: 2.5rem;
+}
+
+.lg\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+.gap-0 {
+    gap: 0;
+}
+
+.pr-6 {
+    padding-right: 1.5rem;
+}
+
+/* Sticky behavior fix */
+.sticky {
+    position: sticky;
+}
+
+.top-15 {
+    top: 3.75rem;
+}
+
+/* Grid for Chase cards same as DOM */
+.grid-cols-\[repeat\(auto-fill\,minmax\(95px\,1fr\)\)\] {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+    gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+    .md\:grid-cols-\[repeat\(auto-fill\,minmax\(127px\,1fr\)\)\] {
+        grid-template-columns: repeat(auto-fill, minmax(127px, 1fr));
+    }
+}
+
+/* Text Utilities */
+.text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.font-barlow {
+    font-family: 'Barlow', sans-serif;
+}
+
+.font-chivoMono {
+    font-family: 'Chivo Mono', monospace;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Sidebar Specifics from DOM */
+.border-secondary {
+    border-color: #333;
+}
+
+.border-primary {
+    border-color: #333;
+}
+
+.bg-tertiary {
+    background-color: var(--bg-tertiary);
+}
+
+/* Ensure 3D stage is visible */
+.stage-container {
+    background: transparent !important;
+}
+
+/* Additional Tailwind Utilities used in DOM */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-1 {
+    flex: 1 1 0%;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.self-stretch {
+    align-self: stretch;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.max-w-full {
+    max-width: 100%;
+}
+
+.object-contain {
+    object-fit: contain;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.mt-10 {
+    margin-top: 2.5rem;
+}
+
+.mb-1 {
+    margin-bottom: 0.25rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.ml-1 {
+    margin-left: 0.25rem;
+}
+
+.shrink-0 {
+    flex-shrink: 0;
+}
+
+.block {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.size-full {
+    width: 100%;
+    height: 100%;
+}
+
+.overflow-y-auto {
+    overflow-y: auto;
+}
+
+/* Dimensions */
+.max-w-\[95px\] {
+    max-width: 95px;
+}
+
+.h-\[161px\] {
+    height: 161px;
+}
+
+.w-\[95px\] {
+    width: 95px;
+}
+
+@media (min-width: 768px) {
+
+    /* md */
+    .md\:max-w-\[158px\] {
+        max-width: 158px;
+    }
+
+    .md\:h-\[258px\] {
+        height: 258px;
+    }
+
+    .md\:w-\[158px\] {
+        width: 158px;
+    }
+
+    .md\:mb-2 {
+        margin-bottom: 0.5rem;
+    }
+
+    .md\:text-\[26px\] {
+        font-size: 26px;
+    }
+
+    .md\:p-6 {
+        padding: 1.5rem;
+    }
+
+    .md\:mt-15 {
+        margin-top: 3.75rem;
+    }
+}
+
+/* Screenshot styling updates */
+.gradient-border-active {
+    position: relative;
+    background: #141414 !important;
+    /* bg-elevated match */
+    border: none !important;
+    z-index: 1;
+}
+
+.gradient-border-active::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    border-radius: 0.85rem;
+    background: linear-gradient(135deg, #E65C00 0%, #F9D423 100%);
+}
+
+/* Tier specific gradients */
+.gradient-active-starter {}
+
+.gradient-active-starter::before {
+    background: linear-gradient(135deg, #7F7FD5, #86A8E7, #91EAE4);
+}
+
+.gradient-active-silver {}
+
+.gradient-active-silver::before {
+    background: linear-gradient(135deg, #bdc3c7, #2c3e50);
+}
+
+.gradient-active-gold {}
+
+.gradient-active-gold::before {
+    background: linear-gradient(135deg, #FFD700, #FDB931);
+}
+
+.gradient-active-platinum {}
+
+.gradient-active-platinum::before {
+    background: linear-gradient(135deg, #8E2DE2, #4A00E0);
+}
+
+.gradient-active-diamond {}
+
+.gradient-active-diamond::before {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+
+.gradient-active-lunar {}
+
+.gradient-active-lunar::before {
+    background: linear-gradient(135deg, #FF416C, #FF4B2B);
+}
+
+/* Progress Bar Colors */
+.bar-blue {
+    background-color: #3b82f6 !important;
+}

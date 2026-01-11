@@ -12,206 +12,48 @@ const PACK_TIERS = [
 let currentPack = PACK_TIERS[0]; // Default to Starter
 let currentCategory = 'pokemon';
 
-const CHASE_CARDS = [
-    // --- POKEMON ---
-    // Starter ($25)
-    { category: 'pokemon', level: 'starter', name: 'Pikachu Common', grade: 'PSA 8', value: '$25', img: 'https://placehold.co/400x560/500000/FFFFFF?text=Pikachu' },
-    { category: 'pokemon', level: 'starter', name: 'Bulbasaur Base', grade: 'PSA 9', value: '$45', img: 'https://placehold.co/400x560/500000/FFFFFF?text=Bulbasaur' },
-    { category: 'pokemon', level: 'starter', name: 'Charmander Base', grade: 'PSA 9', value: '$45', img: 'https://placehold.co/400x560/500000/FFFFFF?text=Charmander' },
-    { category: 'pokemon', level: 'starter', name: 'Squirtle Base', grade: 'PSA 8', value: '$35', img: 'https://placehold.co/400x560/500000/FFFFFF?text=Squirtle' },
-    { category: 'pokemon', level: 'starter', name: 'Eevee Jungle', grade: 'PSA 9', value: '$30', img: 'https://placehold.co/400x560/500000/FFFFFF?text=Eevee' },
-    { category: 'pokemon', level: 'starter', name: 'Meowth Promo', grade: 'PSA 9', value: '$20', img: 'https://placehold.co/400x560/500000/FFFFFF?text=Meowth' },
+const CHASE_CARDS = [];
 
-    // Silver ($50)
-    { category: 'pokemon', level: 'silver', name: 'Dark Dragonite', grade: 'PSA 9', value: '$150', img: 'https://placehold.co/400x560/721414/FFFFFF?text=Dark+Dragon' },
-    { category: 'pokemon', level: 'silver', name: 'Gyarados Holo', grade: 'PSA 8', value: '$120', img: 'https://placehold.co/400x560/721414/FFFFFF?text=Gyarados' },
-    { category: 'pokemon', level: 'silver', name: 'Machamp 1st Ed', grade: 'PSA 8', value: '$100', img: 'https://placehold.co/400x560/721414/FFFFFF?text=Machamp' },
-    { category: 'pokemon', level: 'silver', name: 'Alakazam Base', grade: 'PSA 8', value: '$110', img: 'https://placehold.co/400x560/721414/FFFFFF?text=Alakazam' },
-    { category: 'pokemon', level: 'silver', name: 'Gengar Fossil', grade: 'PSA 9', value: '$140', img: 'https://placehold.co/400x560/721414/FFFFFF?text=Gengar' },
-    { category: 'pokemon', level: 'silver', name: 'Lapras Holo', grade: 'PSA 9', value: '$90', img: 'https://placehold.co/400x560/721414/FFFFFF?text=Lapras' },
+// Helper to generate cards
+function generateCards(category, level, price) {
+    const cards = [];
+    const ranges = [
+        { min: 0.5, max: 0.8, count: 8 },  // 40% - Loss
+        { min: 0.8, max: 1.0, count: 6 },  // 30% - Break Even
+        { min: 1.1, max: 1.8, count: 4 },  // 20% - Small Win
+        { min: 2.0, max: 3.5, count: 1 },  // 5% - Big Win
+        { min: 4.0, max: 8.0, count: 1 }   // 5% - Jackpot
+    ];
 
-    // Gold ($100)
-    { category: 'pokemon', level: 'gold', name: 'Mewtwo Lv.X', grade: 'PSA 9', value: '$400', img: 'https://placehold.co/400x560/952929/FFFFFF?text=Mewtwo' },
-    { category: 'pokemon', level: 'gold', name: 'Shining Magikarp', grade: 'PSA 8', value: '$550', img: 'https://placehold.co/400x560/952929/FFFFFF?text=Shining+Karp' },
-    { category: 'pokemon', level: 'gold', name: 'Blastoise Base', grade: 'PSA 8', value: '$600', img: 'https://placehold.co/400x560/952929/FFFFFF?text=Blastoise' },
-    { category: 'pokemon', level: 'gold', name: 'Venusaur Base', grade: 'PSA 8', value: '$500', img: 'https://placehold.co/400x560/952929/FFFFFF?text=Venusaur' },
-    { category: 'pokemon', level: 'gold', name: 'Lugia Neo', grade: 'PSA 8', value: '$450', img: 'https://placehold.co/400x560/952929/FFFFFF?text=Lugia+Neo' },
-    { category: 'pokemon', level: 'gold', name: 'Ho-Oh Revelations', grade: 'PSA 9', value: '$700', img: 'https://placehold.co/400x560/952929/FFFFFF?text=Ho-Oh' },
+    const icons = { 'pokemon': 'Poke', 'football': 'NFL', 'baseball': 'MLB', 'basketball': 'NBA' };
 
-    // Platinum ($500)
-    { category: 'pokemon', level: 'platinum', name: 'Lugia 1st Ed', grade: 'PSA 9', value: '$2,500', img: 'https://placehold.co/400x560/B73D3D/FFFFFF?text=Lugia+1st' },
-    { category: 'pokemon', level: 'platinum', name: 'Umbreon GS', grade: 'PSA 9', value: '$3,800', img: 'https://placehold.co/400x560/B73D3D/FFFFFF?text=Umbreon+GS' },
-    { category: 'pokemon', level: 'platinum', name: 'Charizard Shining', grade: 'PSA 8', value: '$1,800', img: 'https://placehold.co/400x560/B73D3D/FFFFFF?text=Shining+Zard' },
-    { category: 'pokemon', level: 'platinum', name: 'Rayquaza EX', grade: 'PSA 10', value: '$4,500', img: 'https://placehold.co/400x560/B73D3D/FFFFFF?text=Rayquaza+EX' },
-    { category: 'pokemon', level: 'platinum', name: 'Mew Gold Star', grade: 'PSA 9', value: '$3,200', img: 'https://placehold.co/400x560/B73D3D/FFFFFF?text=Mew+GS' },
-    { category: 'pokemon', level: 'platinum', name: 'Torchic Gold Star', grade: 'PSA 9', value: '$5,000', img: 'https://placehold.co/400x560/B73D3D/FFFFFF?text=Torchic+GS' },
+    ranges.forEach((range, rIdx) => {
+        for (let i = 0; i < range.count; i++) {
+            const val = Math.round(price * (range.min + Math.random() * (range.max - range.min)));
+            const isHit = range.min >= 1.0;
+            const name = isHit
+                ? `${category.charAt(0).toUpperCase() + category.slice(1)} ${level.charAt(0).toUpperCase() + level.slice(1)} Hit #${rIdx}-${i}`
+                : `${category.charAt(0).toUpperCase() + category.slice(1)} Common #${rIdx}-${i}`;
 
-    // Diamond ($1000)
-    { category: 'pokemon', level: 'diamond', name: 'Charizard Base', grade: 'PSA 9', value: '$12,000', img: 'https://placehold.co/400x560/DA5252/FFFFFF?text=Base+Zard' },
-    { category: 'pokemon', level: 'diamond', name: 'Rayquaza GS', grade: 'PSA 10', value: '$18,000', img: 'https://placehold.co/400x560/DA5252/FFFFFF?text=Ray+GS+10' },
-    { category: 'pokemon', level: 'diamond', name: 'Latios/Latias', grade: 'PSA 10', value: '$22,000', img: 'https://placehold.co/400x560/DA5252/FFFFFF?text=Latios+Alt' },
-    { category: 'pokemon', level: 'diamond', name: 'Mario Pikachu', grade: 'PSA 10', value: '$9,500', img: 'https://placehold.co/400x560/DA5252/FFFFFF?text=Mario+Pika' },
-    { category: 'pokemon', level: 'diamond', name: 'Poncho Rayquaza', grade: 'PSA 10', value: '$15,000', img: 'https://placehold.co/400x560/DA5252/FFFFFF?text=Poncho+Ray' },
-    { category: 'pokemon', level: 'diamond', name: 'Master Scroll', grade: 'PSA 10', value: '$25,000', img: 'https://placehold.co/400x560/DA5252/FFFFFF?text=Master+Scroll' },
+            cards.push({
+                category,
+                level,
+                name: name,
+                grade: isHit ? (range.min > 2 ? 'PSA 10' : 'PSA 9') : 'Raw',
+                value: `$${val.toLocaleString()}`,
+                img: `https://placehold.co/400x560/${isHit ? 'FFD700' : '333333'}/FFFFFF?text=${icons[category]}+${isHit ? 'HIT' : 'Base'}`
+            });
+        }
+    });
+    return cards;
+}
 
-    // Lunar ($2500)
-    { category: 'pokemon', level: 'lunar', name: 'Illustrator Pika', grade: 'PSA 9', value: '$500,000', img: 'https://placehold.co/400x560/FF6666/FFFFFF?text=Illustrator' },
-    { category: 'pokemon', level: 'lunar', name: '1st Ed Zard', grade: 'PSA 10', value: '$350,000', img: 'https://placehold.co/400x560/FF6666/FFFFFF?text=1st+Ed+Zard' },
-    { category: 'pokemon', level: 'lunar', name: 'Trophy Kangaskhan', grade: 'PSA 10', value: '$150,000', img: 'https://placehold.co/400x560/FF6666/FFFFFF?text=Trophy+Kang' },
-    { category: 'pokemon', level: 'lunar', name: 'Pre-Release Raichu', grade: 'PSA 9', value: '$200,000', img: 'https://placehold.co/400x560/FF6666/FFFFFF?text=Raichu+PR' },
-    { category: 'pokemon', level: 'lunar', name: 'Ishihara GX', grade: 'PSA 10', value: '$100,000', img: 'https://placehold.co/400x560/FF6666/FFFFFF?text=Ishihara' },
-    { category: 'pokemon', level: 'lunar', name: 'Snap Magikarp', grade: 'PSA 10', value: '$150,000', img: 'https://placehold.co/400x560/FF6666/FFFFFF?text=Snap+Karp' },
-
-
-    // --- FOOTBALL ---
-    // Starter ($25)
-    { category: 'football', level: 'starter', name: 'Base Rookie', grade: 'PSA 9', value: '$15', img: 'https://placehold.co/400x560/8B4500/FFFFFF?text=Base+RC' },
-    { category: 'football', level: 'starter', name: 'Veterans Common', grade: 'PSA 10', value: '$20', img: 'https://placehold.co/400x560/8B4500/FFFFFF?text=Vet+Common' },
-    { category: 'football', level: 'starter', name: 'Score Rookie', grade: 'PSA 9', value: '$18', img: 'https://placehold.co/400x560/8B4500/FFFFFF?text=Score+RC' },
-    { category: 'football', level: 'starter', name: 'Topps Chrome', grade: 'PSA 8', value: '$25', img: 'https://placehold.co/400x560/8B4500/FFFFFF?text=Topps+Chrome' },
-    { category: 'football', level: 'starter', name: 'Prizm Base', grade: 'PSA 9', value: '$30', img: 'https://placehold.co/400x560/8B4500/FFFFFF?text=Prizm+Base' },
-    { category: 'football', level: 'starter', name: 'Mosaic Base', grade: 'PSA 9', value: '$22', img: 'https://placehold.co/400x560/8B4500/FFFFFF?text=Mosaic' },
-
-    // Silver ($50)
-    { category: 'football', level: 'silver', name: 'Peyton Manning', grade: 'PSA 8', value: '$180', img: 'https://placehold.co/400x560/A26200/FFFFFF?text=Manning' },
-    { category: 'football', level: 'silver', name: 'Randy Moss RC', grade: 'PSA 9', value: '$140', img: 'https://placehold.co/400x560/A26200/FFFFFF?text=Moss+RC' },
-    { category: 'football', level: 'silver', name: 'Barry Sanders', grade: 'PSA 9', value: '$120', img: 'https://placehold.co/400x560/A26200/FFFFFF?text=Barry+Sanders' },
-    { category: 'football', level: 'silver', name: 'Brett Favre RC', grade: 'PSA 8', value: '$160', img: 'https://placehold.co/400x560/A26200/FFFFFF?text=Favre' },
-    { category: 'football', level: 'silver', name: 'Jerry Rice Base', grade: 'PSA 10', value: '$200', img: 'https://placehold.co/400x560/A26200/FFFFFF?text=Rice' },
-    { category: 'football', level: 'silver', name: 'Emmitt Smith', grade: 'PSA 9', value: '$150', img: 'https://placehold.co/400x560/A26200/FFFFFF?text=Emmitt' },
-
-    // Gold ($100)
-    { category: 'football', level: 'gold', name: 'Joe Montana Auto', grade: 'PSA 9', value: '$800', img: 'https://placehold.co/400x560/B97F00/FFFFFF?text=Montana' },
-    { category: 'football', level: 'gold', name: 'Jerry Rice Auto', grade: 'PSA 9', value: '$950', img: 'https://placehold.co/400x560/B97F00/FFFFFF?text=Rice+Auto' },
-    { category: 'football', level: 'gold', name: 'Mahomes Prizm', grade: 'PSA 9', value: '$1,200', img: 'https://placehold.co/400x560/B97F00/FFFFFF?text=Mahomes' },
-    { category: 'football', level: 'gold', name: 'Brady Bowman', grade: 'PSA 8', value: '$2,000', img: 'https://placehold.co/400x560/B97F00/FFFFFF?text=Brady+Bowman' },
-    { category: 'football', level: 'gold', name: 'Rodgers Chrome', grade: 'PSA 10', value: '$1,500', img: 'https://placehold.co/400x560/B97F00/FFFFFF?text=Rodgers' },
-    { category: 'football', level: 'gold', name: 'Brees Chrome', grade: 'PSA 10', value: '$850', img: 'https://placehold.co/400x560/B97F00/FFFFFF?text=Brees' },
-
-    // Platinum ($500)
-    { category: 'football', level: 'platinum', name: 'Tom Brady RC', grade: 'PSA 8', value: '$4,500', img: 'https://placehold.co/400x560/D09C00/FFFFFF?text=Brady+RC' },
-    { category: 'football', level: 'platinum', name: 'Mahomes Auto', grade: 'PSA 10', value: '$6,000', img: 'https://placehold.co/400x560/D09C00/FFFFFF?text=Mahomes+Auto' },
-    { category: 'football', level: 'platinum', name: 'Josh Allen RPA', grade: 'PSA 9', value: '$5,500', img: 'https://placehold.co/400x560/D09C00/FFFFFF?text=Josh+Allen' },
-    { category: 'football', level: 'platinum', name: 'Herbert RPA', grade: 'PSA 10', value: '$8,000', img: 'https://placehold.co/400x560/D09C00/FFFFFF?text=Herbert' },
-    { category: 'football', level: 'platinum', name: 'Burrow Prizm', grade: 'PSA 10', value: '$3,500', img: 'https://placehold.co/400x560/D09C00/FFFFFF?text=Burrow' },
-    { category: 'football', level: 'platinum', name: 'Lamar Jackson', grade: 'PSA 10', value: '$4,000', img: 'https://placehold.co/400x560/D09C00/FFFFFF?text=Lamar' },
-
-    // Diamond ($1000)
-    { category: 'football', level: 'diamond', name: 'Jim Brown RC', grade: 'PSA 8', value: '$25,000', img: 'https://placehold.co/400x560/E7B900/FFFFFF?text=Jim+Brown' },
-    { category: 'football', level: 'diamond', name: 'Brady Contenders', grade: 'PSA 9', value: '$35,000', img: 'https://placehold.co/400x560/E7B900/FFFFFF?text=Brady+Auto' },
-    { category: 'football', level: 'diamond', name: 'Walter Payton RC', grade: 'PSA 10', value: '$45,000', img: 'https://placehold.co/400x560/E7B900/FFFFFF?text=Payton+RC' },
-    { category: 'football', level: 'diamond', name: 'Unitas Rookie', grade: 'PSA 9', value: '$20,000', img: 'https://placehold.co/400x560/E7B900/FFFFFF?text=Unitas' },
-    { category: 'football', level: 'diamond', name: 'Namath Rookie', grade: 'PSA 8', value: '$30,000', img: 'https://placehold.co/400x560/E7B900/FFFFFF?text=Namath' },
-    { category: 'football', level: 'diamond', name: 'Starr Rookie', grade: 'PSA 9', value: '$18,000', img: 'https://placehold.co/400x560/E7B900/FFFFFF?text=Starr' },
-
-    // Lunar ($2500)
-    { category: 'football', level: 'lunar', name: 'Brady Champ', grade: 'PSA 9', value: '$450,000', img: 'https://placehold.co/400x560/FFD700/000000?text=Brady+Ticket' },
-    { category: 'football', level: 'lunar', name: 'Mahomes Shield', grade: 'PSA 10', value: '$800,000', img: 'https://placehold.co/400x560/FFD700/000000?text=Mahomes+1/1' },
-    { category: 'football', level: 'lunar', name: 'Brady 1/1', grade: 'BGS 9', value: '$1,200,000', img: 'https://placehold.co/400x560/FFD700/000000?text=Brady+1/1' },
-    { category: 'football', level: 'lunar', name: 'Flawless Logo', grade: 'PSA 10', value: '$600,000', img: 'https://placehold.co/400x560/FFD700/000000?text=NFL+Shield' },
-    { category: 'football', level: 'lunar', name: 'Ruth/Brady Auto', grade: 'DNA 10', value: '$900,000', img: 'https://placehold.co/400x560/FFD700/000000?text=Dual+Auto' },
-    { category: 'football', level: 'lunar', name: 'Jim Brown 10', grade: 'PSA 10', value: '$350,000', img: 'https://placehold.co/400x560/FFD700/000000?text=Brown+10' },
-
-
-    // --- BASEBALL ---
-    // Starter ($25)
-    { category: 'baseball', level: 'starter', name: 'Topps Common', grade: 'PSA 9', value: '$10', img: 'https://placehold.co/400x560/000050/FFFFFF?text=Topps' },
-    { category: 'baseball', level: 'starter', name: 'Bowman Base', grade: 'PSA 10', value: '$30', img: 'https://placehold.co/400x560/000050/FFFFFF?text=Bowman' },
-    { category: 'baseball', level: 'starter', name: 'Donruss Base', grade: 'PSA 9', value: '$12', img: 'https://placehold.co/400x560/000050/FFFFFF?text=Donruss' },
-    { category: 'baseball', level: 'starter', name: 'Heritage Base', grade: 'PSA 10', value: '$25', img: 'https://placehold.co/400x560/000050/FFFFFF?text=Heritage' },
-    { category: 'baseball', level: 'starter', name: 'Stadium Club', grade: 'PSA 9', value: '$15', img: 'https://placehold.co/400x560/000050/FFFFFF?text=Stadium' },
-    { category: 'baseball', level: 'starter', name: 'Allen & Ginter', grade: 'PSA 10', value: '$20', img: 'https://placehold.co/400x560/000050/FFFFFF?text=A&G' },
-
-    // Silver ($50)
-    { category: 'baseball', level: 'silver', name: 'Derek Jeter RC', grade: 'PSA 8', value: '$150', img: 'https://placehold.co/400x560/0F216E/FFFFFF?text=Jeter' },
-    { category: 'baseball', level: 'silver', name: 'Griffey Jr Base', grade: 'PSA 9', value: '$120', img: 'https://placehold.co/400x560/0F216E/FFFFFF?text=Griffey' },
-    { category: 'baseball', level: 'silver', name: 'Frank Thomas', grade: 'PSA 9', value: '$80', img: 'https://placehold.co/400x560/0F216E/FFFFFF?text=Thomas' },
-    { category: 'baseball', level: 'silver', name: 'Chipper Jones', grade: 'PSA 10', value: '$180', img: 'https://placehold.co/400x560/0F216E/FFFFFF?text=Chipper' },
-    { category: 'baseball', level: 'silver', name: 'Ripken Rookie', grade: 'PSA 8', value: '$110', img: 'https://placehold.co/400x560/0F216E/FFFFFF?text=Ripken' },
-    { category: 'baseball', level: 'silver', name: 'Randy Johnson', grade: 'PSA 9', value: '$95', img: 'https://placehold.co/400x560/0F216E/FFFFFF?text=Johnson' },
-
-    // Gold ($100)
-    { category: 'baseball', level: 'gold', name: 'Ichiro Auto', grade: 'PSA 10', value: '$900', img: 'https://placehold.co/400x560/1D438C/FFFFFF?text=Ichiro' },
-    { category: 'baseball', level: 'gold', name: 'Ohtani Rookie', grade: 'PSA 9', value: '$1,200', img: 'https://placehold.co/400x560/1D438C/FFFFFF?text=Ohtani' },
-    { category: 'baseball', level: 'gold', name: 'Judge Rookie', grade: 'PSA 10', value: '$800', img: 'https://placehold.co/400x560/1D438C/FFFFFF?text=Judge' },
-    { category: 'baseball', level: 'gold', name: 'Harper Chrome', grade: 'PSA 10', value: '$700', img: 'https://placehold.co/400x560/1D438C/FFFFFF?text=Harper' },
-    { category: 'baseball', level: 'gold', name: 'Soto Update', grade: 'PSA 10', value: '$650', img: 'https://placehold.co/400x560/1D438C/FFFFFF?text=Soto' },
-    { category: 'baseball', level: 'gold', name: 'Acuna Bat Down', grade: 'PSA 9', value: '$1,000', img: 'https://placehold.co/400x560/1D438C/FFFFFF?text=Acuna' },
-
-    // Platinum ($500)
-    { category: 'baseball', level: 'platinum', name: 'Mike Trout 2011', grade: 'PSA 10', value: '$4,000', img: 'https://placehold.co/400x560/2C64AA/FFFFFF?text=Trout+2011' },
-    { category: 'baseball', level: 'platinum', name: 'Jackie Auto', grade: 'PSA 5', value: '$6,500', img: 'https://placehold.co/400x560/2C64AA/FFFFFF?text=Jackie' },
-    { category: 'baseball', level: 'platinum', name: 'Mantle 1956', grade: 'PSA 8', value: '$8,000', img: 'https://placehold.co/400x560/2C64AA/FFFFFF?text=Mantle+56' },
-    { category: 'baseball', level: 'platinum', name: 'Koufax Rookie', grade: 'PSA 7', value: '$5,000', img: 'https://placehold.co/400x560/2C64AA/FFFFFF?text=Koufax' },
-    { category: 'baseball', level: 'platinum', name: 'Clemente 55', grade: 'PSA 6', value: '$7,500', img: 'https://placehold.co/400x560/2C64AA/FFFFFF?text=Clemente' },
-    { category: 'baseball', level: 'platinum', name: 'Aaron Rookie', grade: 'PSA 6', value: '$6,000', img: 'https://placehold.co/400x560/2C64AA/FFFFFF?text=Aaron' },
-
-    // Diamond ($1000)
-    { category: 'baseball', level: 'diamond', name: 'Mantle 1952', grade: 'PSA 5', value: '$45,000', img: 'https://placehold.co/400x560/3B86C8/FFFFFF?text=Mantle+52' },
-    { category: 'baseball', level: 'diamond', name: 'Ruth Goudey', grade: 'PSA 4', value: '$30,000', img: 'https://placehold.co/400x560/3B86C8/FFFFFF?text=Ruth' },
-    { category: 'baseball', level: 'diamond', name: 'Cobb T206', grade: 'PSA 3', value: '$15,000', img: 'https://placehold.co/400x560/3B86C8/FFFFFF?text=Cobb' },
-    { category: 'baseball', level: 'diamond', name: 'Gehrig 1934', grade: 'PSA 6', value: '$22,000', img: 'https://placehold.co/400x560/3B86C8/FFFFFF?text=Gehrig' },
-    { category: 'baseball', level: 'diamond', name: 'Shoeless Joe', grade: 'PSA 2', value: '$18,000', img: 'https://placehold.co/400x560/3B86C8/FFFFFF?text=Jackson' },
-    { category: 'baseball', level: 'diamond', name: 'Cy Young', grade: 'PSA 3', value: '$20,000', img: 'https://placehold.co/400x560/3B86C8/FFFFFF?text=Cy+Young' },
-
-    // Lunar ($2500)
-    { category: 'baseball', level: 'lunar', name: 'Wagner T206', grade: 'PSA 2', value: '$2,500,000', img: 'https://placehold.co/400x560/4AA8E6/FFFFFF?text=Wagner' },
-    { category: 'baseball', level: 'lunar', name: 'Mantle Mint', grade: 'PSA 9', value: '$1,200,000', img: 'https://placehold.co/400x560/4AA8E6/FFFFFF?text=Mantle+9' },
-    { category: 'baseball', level: 'lunar', name: 'Ruth Rookie', grade: 'PSA 7', value: '$500,000', img: 'https://placehold.co/400x560/4AA8E6/FFFFFF?text=Ruth+RC' },
-    { category: 'baseball', level: 'lunar', name: 'Tout 1/1 Auto', grade: 'PSA 10', value: '$800,000', img: 'https://placehold.co/400x560/4AA8E6/FFFFFF?text=Trout+Auto' },
-    { category: 'baseball', level: 'lunar', name: 'Ohtani 1/1', grade: 'PSA 10', value: '$400,000', img: 'https://placehold.co/400x560/4AA8E6/FFFFFF?text=Ohtani+1/1' },
-    { category: 'baseball', level: 'lunar', name: '52 Mantle 10', grade: 'PSA 10', value: '$10,000,000', img: 'https://placehold.co/400x560/4AA8E6/FFFFFF?text=Grail' },
-
-
-    // --- BASKETBALL ---
-    // Starter ($25)
-    { category: 'basketball', level: 'starter', name: 'Hoops Base', grade: 'PSA 9', value: '$15', img: 'https://placehold.co/400x560/004d00/FFFFFF?text=Hoops' },
-    { category: 'basketball', level: 'starter', name: 'Prizm Base', grade: 'PSA 10', value: '$40', img: 'https://placehold.co/400x560/004d00/FFFFFF?text=Prizm' },
-    { category: 'basketball', level: 'starter', name: 'Donruss Optic', grade: 'PSA 9', value: '$25', img: 'https://placehold.co/400x560/004d00/FFFFFF?text=Optic' },
-    { category: 'basketball', level: 'starter', name: 'Select Base', grade: 'PSA 9', value: '$30', img: 'https://placehold.co/400x560/004d00/FFFFFF?text=Select' },
-    { category: 'basketball', level: 'starter', name: 'Mosaic Intro', grade: 'PSA 10', value: '$35', img: 'https://placehold.co/400x560/004d00/FFFFFF?text=Mosaic' },
-    { category: 'basketball', level: 'starter', name: 'Playoff Base', grade: 'PSA 9', value: '$12', img: 'https://placehold.co/400x560/004d00/FFFFFF?text=Playoff' },
-
-    // Silver ($50)
-    { category: 'basketball', level: 'silver', name: 'Shaq Rookie', grade: 'PSA 9', value: '$200', img: 'https://placehold.co/400x560/0F640F/FFFFFF?text=Shaq' },
-    { category: 'basketball', level: 'silver', name: 'Iverson Chrome', grade: 'PSA 9', value: '$250', img: 'https://placehold.co/400x560/0F640F/FFFFFF?text=Iverson' },
-    { category: 'basketball', level: 'silver', name: 'Duncan Chrome', grade: 'PSA 9', value: '$180', img: 'https://placehold.co/400x560/0F640F/FFFFFF?text=Duncan' },
-    { category: 'basketball', level: 'silver', name: 'Garnett Rookie', grade: 'PSA 9', value: '$150', img: 'https://placehold.co/400x560/0F640F/FFFFFF?text=Garnett' },
-    { category: 'basketball', level: 'silver', name: 'Nash Rookie', grade: 'PSA 9', value: '$160', img: 'https://placehold.co/400x560/0F640F/FFFFFF?text=Nash' },
-    { category: 'basketball', level: 'silver', name: 'Carter Chrome', grade: 'PSA 9', value: '$220', img: 'https://placehold.co/400x560/0F640F/FFFFFF?text=Vince' },
-
-    // Gold ($100)
-    { category: 'basketball', level: 'gold', name: 'Kobe Chrome', grade: 'PSA 9', value: '$1,500', img: 'https://placehold.co/400x560/1F7B1F/FFFFFF?text=Kobe' },
-    { category: 'basketball', level: 'gold', name: 'Durant Rookie', grade: 'PSA 10', value: '$1,200', img: 'https://placehold.co/400x560/1F7B1F/FFFFFF?text=Durant' },
-    { category: 'basketball', level: 'gold', name: 'Curry Rookie', grade: 'PSA 8', value: '$1,000', img: 'https://placehold.co/400x560/1F7B1F/FFFFFF?text=Curry' },
-    { category: 'basketball', level: 'gold', name: 'Luka Prizm', grade: 'PSA 10', value: '$800', img: 'https://placehold.co/400x560/1F7B1F/FFFFFF?text=Luka' },
-    { category: 'basketball', level: 'gold', name: 'Giannis Prizm', grade: 'PSA 9', value: '$900', img: 'https://placehold.co/400x560/1F7B1F/FFFFFF?text=Giannis' },
-    { category: 'basketball', level: 'gold', name: 'LeBron Base', grade: 'PSA 10', value: '$1,800', img: 'https://placehold.co/400x560/1F7B1F/FFFFFF?text=LeBron' },
-
-    // Platinum ($500)
-    { category: 'basketball', level: 'platinum', name: 'LeBron Chrome', grade: 'PSA 10', value: '$8,000', img: 'https://placehold.co/400x560/2E922E/FFFFFF?text=LeBron+RC' },
-    { category: 'basketball', level: 'platinum', name: 'Curry NT Auto', grade: 'PSA 9', value: '$12,000', img: 'https://placehold.co/400x560/2E922E/FFFFFF?text=Curry+NT' },
-    { category: 'basketball', level: 'platinum', name: 'Jordan Fleer', grade: 'PSA 8', value: '$7,000', img: 'https://placehold.co/400x560/2E922E/FFFFFF?text=MJ+Fleer' },
-    { category: 'basketball', level: 'platinum', name: 'Kobe Auto', grade: 'PSA 10', value: '$5,500', img: 'https://placehold.co/400x560/2E922E/FFFFFF?text=Kobe+Auto' },
-    { category: 'basketball', level: 'platinum', name: 'Wemby Gold', grade: 'PSA 10', value: '$6,000', img: 'https://placehold.co/400x560/2E922E/FFFFFF?text=Wemby' },
-    { category: 'basketball', level: 'platinum', name: 'Bird/Magic', grade: 'PSA 8', value: '$9,000', img: 'https://placehold.co/400x560/2E922E/FFFFFF?text=Bird+Magic' },
-
-    // Diamond ($1000)
-    { category: 'basketball', level: 'diamond', name: 'Jordan 1986', grade: 'PSA 10', value: '$250,000', img: 'https://placehold.co/400x560/3EA93E/FFFFFF?text=MJ+86' },
-    { category: 'basketball', level: 'diamond', name: 'Kobe Exquisite', grade: 'PSA 9', value: '$80,000', img: 'https://placehold.co/400x560/3EA93E/FFFFFF?text=Kobe+Exq' },
-    { category: 'basketball', level: 'diamond', name: 'LeBron Exquisite', grade: 'PSA 8', value: '$45,000', img: 'https://placehold.co/400x560/3EA93E/FFFFFF?text=LeBron+Exq' },
-    { category: 'basketball', level: 'diamond', name: 'Logoman Auto', grade: 'PSA 9', value: '$60,000', img: 'https://placehold.co/400x560/3EA93E/FFFFFF?text=Logoman' },
-    { category: 'basketball', level: 'diamond', name: 'Russell Rookie', grade: 'PSA 8', value: '$35,000', img: 'https://placehold.co/400x560/3EA93E/FFFFFF?text=Russell' },
-    { category: 'basketball', level: 'diamond', name: 'Wilt Rookie', grade: 'PSA 8', value: '$40,000', img: 'https://placehold.co/400x560/3EA93E/FFFFFF?text=Wilt' },
-
-    // Lunar ($2500)
-    { category: 'basketball', level: 'lunar', name: 'LeBron Logoman', grade: 'PSA 9', value: '$2,000,000', img: 'https://placehold.co/400x560/4DBF4D/FFFFFF?text=LeBron+1/1' },
-    { category: 'basketball', level: 'lunar', name: 'Jordan RPA', grade: 'BGS 9.5', value: '$1,500,000', img: 'https://placehold.co/400x560/4DBF4D/FFFFFF?text=MJ+RPA' },
-    { category: 'basketball', level: 'lunar', name: 'Luka Logoman', grade: 'PSA 10', value: '$3,000,000', img: 'https://placehold.co/400x560/4DBF4D/FFFFFF?text=Luka+1/1' },
-    { category: 'basketball', level: 'lunar', name: 'Kobe 1/1', grade: 'PSA 10', value: '$800,000', img: 'https://placehold.co/400x560/4DBF4D/FFFFFF?text=Kobe+1/1' },
-    { category: 'basketball', level: 'lunar', name: 'Giannis 1/1', grade: 'PSA 10', value: '$500,000', img: 'https://placehold.co/400x560/4DBF4D/FFFFFF?text=Giannis+1/1' },
-    { category: 'basketball', level: 'lunar', name: 'Curry Logoman', grade: 'PSA 10', value: '$750,000', img: 'https://placehold.co/400x560/4DBF4D/FFFFFF?text=Curry+Logo' }
-];
+// Populate Database
+PACK_TIERS.forEach(pack => {
+    ['pokemon', 'football', 'baseball', 'basketball'].forEach(cat => {
+        CHASE_CARDS.push(...generateCards(cat, pack.id, pack.price));
+    });
+});
 
 // DOM Elements
 const levelSelectGrid = document.getElementById('levelSelectGrid');
@@ -236,7 +78,28 @@ const ripBtn = document.getElementById('ripBtn');
 const packStage = document.querySelector('.pack-stage');
 const revealStage = document.getElementById('revealedCard');
 
+// Payment Elements
+const paymentStage = document.getElementById('paymentStage');
+const paymentForm = document.getElementById('paymentForm');
+const confirmPayBtn = document.getElementById('confirmPayBtn');
+const payItemName = document.getElementById('payItemName');
+const payItemPrice = document.getElementById('payItemPrice');
+const payBtnAmount = document.getElementById('payBtnAmount');
+
 // Logic
+const ODDS_CONFIG = [
+    { minMult: 0.5, maxMult: 0.8, weight: 40.6 },
+    { minMult: 0.8, maxMult: 1.0, weight: 30.5 },
+    { minMult: 1.0, maxMult: 2.0, weight: 25.3 },
+    { minMult: 2.0, maxMult: 4.0, weight: 3.0 },
+    { minMult: 4.0, maxMult: 8.0, weight: 0.5 },
+    { minMult: 8.0, maxMult: 9999, weight: 0.1 }
+];
+
+function parseValue(valStr) {
+    return parseInt(valStr.replace(/[^0-9]/g, ''), 10);
+}
+
 function updateStageVisuals() {
     // Update Icons
     const icons = {
@@ -265,10 +128,16 @@ function renderChaseCards() {
     }
 
     // Filter by BOTH Category AND Level
-    const activeCards = CHASE_CARDS.filter(c => c.category === currentCategory && c.level === currentPack.id);
+    let activeCards = CHASE_CARDS.filter(c => c.category === currentCategory && c.level === currentPack.id);
 
-    // Fallback if no specific cards found
-    const displayCards = activeCards.length > 0 ? activeCards : [{ name: 'Mystery Card', value: '???', grade: '?', img: 'https://placehold.co/400x560/333333/FFFFFF?text=Mystery' }];
+    // SORT DESCENDING BY VALUE (High -> Low)
+    activeCards.sort((a, b) => parseValue(b.value) - parseValue(a.value));
+
+    // SLICE TOP 6 (Show only the best hits)
+    const topHits = activeCards.slice(0, 6);
+
+    // Fallback if no specific cards found (which shouldn't happen with 480 cards)
+    const displayCards = topHits.length > 0 ? topHits : [{ name: 'Mystery Card', value: '???', grade: '?', img: 'https://placehold.co/400x560/333333/FFFFFF?text=Mystery' }];
 
     chaseCarousel.innerHTML = displayCards.map(card => `
         <div class="flex max-w-[95px] flex-1 flex-col self-stretch transition-transform duration-200 md:max-w-[158px] chase-card-shim">
@@ -385,32 +254,30 @@ function selectPack(id) {
     renderChaseCards(); // Update Chase Cards based on new tier
 }
 
-// Mock Data for Values/Probabilities based on tier price
+// Data for Values/Probabilities based on tier price
 function renderValues() {
-    // Generate mock ranges centering around the price
     const base = currentPack.price;
-    const ranges = [
-        { label: `$${Math.round(base * 0.5)}-${Math.round(base * 0.8)}`, perc: 40.6 },
-        { label: `$${Math.round(base * 0.8)}-${Math.round(base * 1.0)}`, perc: 30.5 },
-        { label: `$${Math.round(base * 1.0)}-${Math.round(base * 2.0)}`, perc: 25.3 },
-        { label: `$${Math.round(base * 2.0)}-${Math.round(base * 4.0)}`, perc: 3.0 },
-        { label: `$${Math.round(base * 4.0)}-${Math.round(base * 8.0)}`, perc: 0.5 },
-        { label: `$${Math.round(base * 8.0)}+`, perc: 0.1 }
-    ];
 
-    valuesList.innerHTML = ranges.map(r => `
+    valuesList.innerHTML = ODDS_CONFIG.map(config => {
+        const minVal = Math.round(base * config.minMult);
+        const maxVal = config.maxMult > 1000 ? '' : `-$${Math.round(base * config.maxMult)}`;
+        const label = `$${minVal}${maxVal}`;
+        const perc = config.weight;
+
+        return `
         <div class="flex items-center gap-1">
-            <div class="w-28 shrink-0"><p class="font-chivoMono text-sm text-primary">${r.label}</p></div>
+            <div class="w-28 shrink-0"><p class="font-chivoMono text-sm text-primary">${label}</p></div>
             <div class="grow">
                 <div class="flex">
                     <div class="relative h-2 w-full overflow-hidden rounded-full bg-border-secondary">
-                        <div class="h-full rounded-full bar-blue transition-all duration-500" style="width: ${r.perc}%"></div>
+                        <div class="h-full rounded-full bar-blue transition-all duration-500" style="width: ${perc}%"></div>
                     </div>
                 </div>
             </div>
-            <div class="w-16 shrink-0 text-right"><p class="font-chivoMono text-sm text-primary">${r.perc}%</p></div>
+            <div class="w-16 shrink-0 text-right"><p class="font-chivoMono text-sm text-primary">${perc}%</p></div>
         </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function updateProbabilities() {
@@ -425,14 +292,30 @@ window.openRipModal = (packId) => {
 
     currentPack = pack;
 
-    // Reset Modal State
-    packStage.classList.remove('hidden');
-    revealStage.classList.add('hidden');
-    ripBtn.classList.remove('hidden');
-    ripBtn.textContent = `OPEN ${currentCategory.toUpperCase()} ${pack.name.toUpperCase()} ($${pack.price.toLocaleString()})`;
-    ripBtn.disabled = false;
+    // Reset Modal State -> Show Payment First
+    ripModal.classList.remove('hidden');
 
-    // Render Pack in Modal
+    // 1. Show Payment
+    paymentStage.classList.remove('hidden');
+
+    // 2. Hide others
+    packStage.classList.add('hidden');
+    revealStage.classList.add('hidden');
+    ripBtn.classList.add('hidden');
+
+    // 3. Populate Payment Info
+    payItemName.textContent = `${currentCategory.toUpperCase()} ${pack.name}`;
+    payItemPrice.textContent = `$${pack.price.toLocaleString()}.00`;
+    payBtnAmount.textContent = `$${pack.price.toLocaleString()}.00`;
+
+    // Reset Button State
+    const spanText = confirmPayBtn.querySelector('span:first-child');
+    if (spanText) spanText.textContent = "PAY NOW";
+    confirmPayBtn.disabled = false;
+    confirmPayBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
+    // Prepare Pack Stage (for later)
+    ripBtn.textContent = `OPEN PACK`;
     activePackContainer.innerHTML = `
         <div class="pack-envelope" style="background: linear-gradient(135deg, ${pack.color} 0%, #000 100%);">
             <div class="pack-logo">${currentCategory.toUpperCase()}</div>
@@ -440,9 +323,23 @@ window.openRipModal = (packId) => {
             <div class="font-chivoMono text-white mt-2">$${pack.price.toLocaleString()}</div>
         </div>
     `;
-
-    ripModal.classList.remove('hidden');
 };
+
+function handlePayment() {
+    // Simulate Processing
+    const spanText = confirmPayBtn.querySelector('span:first-child');
+    spanText.textContent = "PROCESSING...";
+    confirmPayBtn.disabled = true;
+    confirmPayBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+    setTimeout(() => {
+        // Success! Transition to Pack
+        paymentStage.classList.add('hidden');
+        packStage.classList.remove('hidden');
+        ripBtn.classList.remove('hidden');
+        ripBtn.disabled = false;
+    }, 1500);
+}
 
 function setupEventListeners() {
     closeModalBtn.addEventListener('click', () => {
@@ -451,6 +348,12 @@ function setupEventListeners() {
 
     ripBtn.addEventListener('click', () => {
         performRip();
+    });
+
+    // Payment Form Submit
+    paymentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handlePayment();
     });
 
     ripModal.addEventListener('click', (e) => {
@@ -474,13 +377,39 @@ function performRip() {
 }
 
 function showResult() {
-    // Filter cards matching current Category AND Pack Level
+    // 1. Filter valid cards for this Pack (Category + Tier)
     const validCards = CHASE_CARDS.filter(c => c.category === currentCategory && c.level === currentPack.id);
-
-    // Fallback logic if data is missing for a specific combo
     const pool = validCards.length > 0 ? validCards : CHASE_CARDS.filter(c => c.category === currentCategory);
 
-    const randomCard = pool[Math.floor(Math.random() * pool.length)];
+    // 2. Determine Winning Value Bucket via Weighted RNG
+    const rand = Math.random() * 100;
+    let cumulative = 0;
+    let selectedBucket = null;
+
+    for (const config of ODDS_CONFIG) {
+        cumulative += config.weight;
+        if (rand <= cumulative) {
+            selectedBucket = config;
+            break;
+        }
+    }
+
+    // Fallback if floating point weirdness misses the last bucket
+    if (!selectedBucket) selectedBucket = ODDS_CONFIG[ODDS_CONFIG.length - 1];
+
+    // 3. Filter Pool for cards in this Value Bucket
+    const basePrice = currentPack.price;
+    const bucketCards = pool.filter(c => {
+        const val = parseValue(c.value);
+        const min = basePrice * selectedBucket.minMult;
+        // Specific check for top tier (infinity)
+        const max = selectedBucket.maxMult > 1000 ? Infinity : basePrice * selectedBucket.maxMult;
+        return val >= min && val <= max;
+    });
+
+    // 4. Select Winner (Fallback to any card in pool if bucket is empty)
+    const finalPool = bucketCards.length > 0 ? bucketCards : pool;
+    const randomCard = finalPool[Math.floor(Math.random() * finalPool.length)];
 
     document.getElementById('cardResultImg').src = randomCard.img;
     document.getElementById('cardResultName').textContent = randomCard.name;

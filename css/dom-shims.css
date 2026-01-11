@@ -316,7 +316,7 @@
     inset: -2px;
     z-index: -1;
     border-radius: 0.85rem;
-    background: linear-gradient(135deg, #E65C00 0%, #F9D423 100%);
+    background: linear-gradient(135deg, #8A2BE2 0%, #00FFFF 100%);
 }
 
 /* Tier specific gradients */
@@ -360,3 +360,10 @@
 .bar-blue {
     background-color: #3b82f6 !important;
 }
+/* Fortnite Theme Overrides */
+.bg-[#D20505] { background: linear-gradient(90deg, #8A2BE2, #00FFFF) !important; }
+.border-[#D20505] { border-color: transparent !important; }
+.hover:bg-red-600:hover { background: linear-gradient(90deg, #d24dff, #99ffff) !important; box-shadow: 0 0 30px rgba(0, 255, 255, 0.6) !important; }
+
+/* Enhanced Category Button Active State */
+.active-category { border-image: linear-gradient(90deg, #8A2BE2, #00FFFF) 1 !important; box-shadow: 0 0 20px rgba(138, 43, 226, 0.4); background: rgba(138, 43, 226, 0.1) !important; }

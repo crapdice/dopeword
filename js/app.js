@@ -234,7 +234,7 @@ function setupStageInteractions() {
 
 function openAccountDetailsModal(account) {
     // Populate Modal
-    document.getElementById('detailHeroImg').src = account.images.main;
+    document.getElementById('detailHeroImg').src = account.inventory.skins.preview_image;
     document.getElementById('detailTitle').textContent = account.title;
     document.getElementById('detailLevel').textContent = account.stats.level;
     document.getElementById('detailWins').textContent = account.stats.wins;

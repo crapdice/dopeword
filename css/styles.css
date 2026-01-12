@@ -329,12 +329,12 @@ body {
 
 .border {
     border-width: 1px;
-    solid;
+    border-style: solid;
 }
 
 .border-2 {
     border-width: 2px;
-    solid;
+    border-style: solid;
 }
 
 .border-t {
@@ -501,11 +501,12 @@ body {
     height: 64px;
     background: rgba(15, 12, 41, 0.7);
     border-bottom: 1px solid rgba(191, 0, 255, 0.3);
-    position: sticky;
+    /*position: sticky;*/
     top: 0;
     z-index: 100;
     backdrop-filter: blur(12px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
 }
 
 .logo-container {
@@ -798,6 +799,7 @@ main {
         opacity: 1;
     }
 }
+
 /* --- Account Card (Sidebar) --- */
 .account-card {
     display: flex;
@@ -850,14 +852,16 @@ main {
     font-family: var(--font-main);
     font-size: 10px;
     font-weight: 700;
-    color: #ffd700; /* Gold text */
+    color: #ffd700;
+    /* Gold text */
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .account-title {
     font-family: var(--font-main);
-    font-size: 0.75rem; /* text-xs */
+    font-size: 0.75rem;
+    /* text-xs */
     line-height: 1.2;
     color: var(--text-primary);
     display: -webkit-box;
@@ -880,7 +884,8 @@ main {
     font-family: var(--font-main);
     font-size: 0.8rem;
     font-weight: 700;
-    color: #4ade80; /* green-400 */
+    color: #4ade80;
+    /* green-400 */
 }
 
 .account-est {
@@ -894,4 +899,3 @@ main {
         max-width: 158px;
     }
 }
-

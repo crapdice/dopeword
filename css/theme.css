@@ -375,6 +375,87 @@
     color: #666;
 }
 
-.sidebar-sticky {
-    max-height: calc(-100px + 100vh);
+@media (min-width: 1024px) {
+    .sidebar-sticky {
+        height: calc(100vh - 100px);
+        overflow: hidden;
+    }
+}
+
+.sidebar-separator {
+    margin: 48px 0;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* =========================================
+   Global Footer
+   ========================================= */
+.main-footer {
+    width: 100%;
+    padding: 24px 0;
+    margin-top: 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(to top, rgba(15, 12, 41, 0.95), transparent);
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Chivo Mono', monospace;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.footer-link:hover {
+    color: #bf00ff;
+    /* Neon Purple Accent */
+}
+
+/* =========================================
+   Utility Helpers (Shim)
+   ========================================= */
+.order-1 {
+    order: 1;
+}
+
+.order-2 {
+    order: 2;
+}
+
+@media (min-width: 1024px) {
+    .lg\:order-1 {
+        order: 1;
+    }
+
+    .lg\:order-2 {
+        order: 2;
+    }
 }

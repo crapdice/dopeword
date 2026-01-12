@@ -41,7 +41,7 @@
                                 class="grid justify-center gap-0 grid-cols-1 px-4 lg:grid-cols-[1fr_402px] lg:min-h-[calc(100vh - 56px)]">
 
                                 <!-- Left Column: Stage & Chase Cards -->
-                                <div class="w-full pr-6 lg:px-10 lg:pb-10">
+                                <div class="w-full pr-6 lg:px-10 lg:pb-10 order-2 lg:order-1">
                                     <div class="relative overflow-hidden aspect-[4/3] lg:aspect-[2.4]">
                                         <div class="absolute inset-0">
                                             <div
@@ -104,87 +104,90 @@
                                 </div>
 
                                 <!-- Right Column: Sidebar -->
-                                <div class="h-full p-0 lg:pb-10">
-                                    <div class="sticky top-15 size-full shrink-0 lg:w-[402px] transition-all duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1)] translate-y-0 scale-100 opacity-100 sidebar-sticky"
+                                <div class="h-full p-0 lg:pb-10 order-1 lg:order-2">
+                                    <div
+                                        class="lg:sticky lg:top-15 shrink-0 lg:w-[402px] transition-all duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1)] translate-y-0 scale-100 opacity-100 sidebar-sticky">
                                         <div
-                                        class="flex h-full flex-col border border-secondary bg-elevated backdrop-blur-sm lg:rounded-3xl">
-                                        <div class="custom-scrollbar flex-1 overflow-y-auto">
-                                            <div class="px-6 pt-6 md:pt-10">
+                                            class="flex h-full flex-col border border-secondary bg-elevated backdrop-blur-sm lg:rounded-3xl">
+                                            <div class="custom-scrollbar flex-1 overflow-y-auto">
+                                                <div class="px-6 pt-6 md:pt-10">
 
-                                                <div class="block md:block">
-                                                    <h4
-                                                        class="font-barlow text-lg font-bold capitalize text-primary md:text-[26px]">
-                                                        Platform</h4>
-                                                    <div class="grid grid-cols-2 gap-2 pt-6">
-                                                        <button
-                                                            class="btn-pack-select box-border w-full rounded-xl p-4 text-left transition focus:outline-none relative flex min-h-[90px] flex-col items-center justify-center border-2 border-[#FFFFFF] bg-tertiary px-2 py-4 active-category"
-                                                            data-category="fortnite">
-                                                            <div class="text-4xl mb-2">🖥️</div>
-                                                            <p
-                                                                class="pt-2 font-chivoMono text-base capitalize leading-none text-primary">
-                                                                PC / EPIC</p>
-                                                        </button>
-                                                        <button
-                                                            class="btn-pack-select box-border w-full rounded-xl p-4 text-left transition focus:outline-none relative flex min-h-[90px] flex-col items-center justify-center border-2 border-primary px-2 py-4 hover:border-[#FFFFFF]"
-                                                            data-category="fortnite">
-                                                            <div class="text-4xl mb-2">🎮</div>
-                                                            <p
-                                                                class="pt-2 font-chivoMono text-base capitalize leading-none text-primary">
-                                                                Console</p>
-                                                        </button>
+                                                    <div class="block md:block">
+                                                        <h4
+                                                            class="font-barlow text-lg font-bold capitalize text-primary md:text-[26px]">
+                                                            Platform</h4>
+                                                        <div class="grid grid-cols-2 gap-2 pt-6">
+                                                            <button
+                                                                class="btn-pack-select box-border w-full rounded-xl p-4 text-left transition focus:outline-none relative flex min-h-[90px] flex-col items-center justify-center border-2 border-[#FFFFFF] bg-tertiary px-2 py-4 active-category"
+                                                                data-category="fortnite">
+                                                                <div class="text-4xl mb-2">🖥️</div>
+                                                                <p
+                                                                    class="pt-2 font-chivoMono text-base capitalize leading-none text-primary">
+                                                                    PC / EPIC</p>
+                                                            </button>
+                                                            <button
+                                                                class="btn-pack-select box-border w-full rounded-xl p-4 text-left transition focus:outline-none relative flex min-h-[90px] flex-col items-center justify-center border-2 border-primary px-2 py-4 hover:border-[#FFFFFF]"
+                                                                data-category="fortnite">
+                                                                <div class="text-4xl mb-2">🎮</div>
+                                                                <p
+                                                                    class="pt-2 font-chivoMono text-base capitalize leading-none text-primary">
+                                                                    Console</p>
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <hr class="my-6 block border-primary md:block opacity-20">
+                                                    <div class="sidebar-separator"></div>
 
-                                                <!-- Level Select -->
-                                                <div class="">
-                                                    <h4
-                                                        class="font-barlow text-lg font-bold capitalize text-primary md:text-[26px]">
-                                                        Level Select</h4>
-                                                    <p class="mt-1 font-chivoMono text-xs text-tertiary">Select your
-                                                        level to view values</p>
-                                                    <div class="grid grid-cols-3 gap-2 pt-6" id="levelSelectGrid">
-                                                        <!-- Populated by JS -->
+                                                    <!-- Level Select -->
+                                                    <div class="">
+                                                        <h4
+                                                            class="font-barlow text-lg font-bold capitalize text-primary md:text-[26px]">
+                                                            Level Select</h4>
+                                                        <p class="mt-1 font-chivoMono text-xs text-tertiary">Select your
+                                                            level to view values</p>
+                                                        <div class="grid grid-cols-3 gap-2 pt-6" id="levelSelectGrid">
+                                                            <!-- Populated by JS -->
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <hr class="my-6 block border-primary md:block opacity-20">
+                                                    <div class="sidebar-separator"></div>
 
-                                                <!-- Values -->
-                                                <div class="mt-0 md:mt-0">
-                                                    <h4
-                                                        class="font-barlow text-lg font-bold capitalize text-primary md:text-[26px]">
-                                                        <span id="selectedLevelName">Starter</span> Values*
-                                                    </h4>
-                                                    <p class="mt-1 font-chivoMono text-xs text-tertiary">Average
-                                                        card value is $<span id="avgValue">25</span></p>
-                                                    <div class="flex flex-col gap-1 pt-6 pb-2" id="valuesList">
-                                                        <!-- Populated by JS -->
+                                                    <!-- Values -->
+                                                    <div class="mt-0 md:mt-0">
+                                                        <h4
+                                                            class="font-barlow text-lg font-bold capitalize text-primary md:text-[26px]">
+                                                            <span id="selectedLevelName">Starter</span> Values*
+                                                        </h4>
+                                                        <p class="mt-1 font-chivoMono text-xs text-tertiary">Average
+                                                            card value is $<span id="avgValue">25</span></p>
+                                                        <div class="flex flex-col gap-1 pt-6 pb-2" id="valuesList">
+                                                            <!-- Populated by JS -->
+                                                        </div>
+                                                        <p
+                                                            class="font-chivoMono text-xs font-normal text-tertiary mt-4">
+                                                            *Values are estimates...</p>
                                                     </div>
-                                                    <p class="font-chivoMono text-xs font-normal text-tertiary mt-4">
-                                                        *Values are estimates...</p>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <!-- Sticky Footer -->
-                                        <div class="sticky bottom-0 mt-auto w-full">
-                                            <div
-                                                class="flex flex-col border-t border-t-primary bg-elevated lg:bg-transparent">
-                                                <div class="flex flex-col px-6 pb-4 pt-4 lg:p-6 lg:pt-6">
-                                                    <p
-                                                        class="mb-4 text-center font-chivoMono text-[10px]/[12px] font-normal text-tertiary">
-                                                        Terms apply...</p>
-                                                    <button id="sidebarBuyBtn"
-                                                        class="flex items-center justify-center whitespace-nowrap transition-colors focus:outline-none no-underline gap-2 min-w-28 px-5 border text-white hover:bg-red-600 border-[#D20505] bg-[#D20505] rounded-lg h-12 md:h-14 capitalize w-full shadow-[0_0_15px_rgba(210,5,5,0.4)]"
-                                                        type="button">
-                                                        <div class="text-center font-chivoMono">
-                                                            <p class="text-base font-bold">Buy Pack</p>
-                                                            <p class="text-sm font-normal">$<span
-                                                                    id="buyBtnPrice">25</span></p>
-                                                        </div>
-                                                    </button>
+                                            <!-- Sticky Footer -->
+                                            <div class="sticky bottom-0 mt-auto w-full">
+                                                <div
+                                                    class="flex flex-col border-t border-t-primary bg-elevated lg:bg-transparent">
+                                                    <div class="flex flex-col px-6 pb-4 pt-4 lg:p-6 lg:pt-6">
+                                                        <p
+                                                            class="mb-4 text-center font-chivoMono text-[10px]/[12px] font-normal text-tertiary">
+                                                            Terms apply...</p>
+                                                        <button id="sidebarBuyBtn"
+                                                            class="flex items-center justify-center whitespace-nowrap transition-colors focus:outline-none no-underline gap-2 min-w-28 px-5 border text-white hover:bg-red-600 border-[#D20505] bg-[#D20505] rounded-lg h-12 md:h-14 capitalize w-full shadow-[0_0_15px_rgba(210,5,5,0.4)]"
+                                                            type="button">
+                                                            <div class="text-center font-chivoMono">
+                                                                <p class="text-base font-bold">Buy Pack</p>
+                                                                <p class="text-sm font-normal">$<span
+                                                                        id="buyBtnPrice">25</span></p>
+                                                            </div>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -195,156 +198,147 @@
                     </div>
                 </div>
             </div>
-    </div>
-    </main>
+        </main>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <p>&copy; 2026 DOPEWORD Corp. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">FAQ</a>
-        </div>
-    </footer>
 
-    <!-- Pack Opening Modal -->
-    <div id="ripModal" class="modal hidden">
-        <div class="modal-content">
-            <button class="close-modal">&times;</button>
+        <!-- Pack Opening Modal -->
+        <div id="ripModal" class="modal hidden">
+            <div class="modal-content">
+                <button class="close-modal">&times;</button>
 
-            <!-- Payment Stage -->
-            <div id="paymentStage" class="hidden w-full max-w-md mx-auto p-4">
-                <div
-                    class="bg-black/40 backdrop-blur-xl rounded-2xl border border-white/10 p-6 shadow-2xl relative overflow-hidden">
-                    <!-- Header -->
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="font-barlow text-2xl text-white font-bold">Secure Checkout</h3>
-                        <div class="flex gap-2 opacity-70">
-                            <div class="w-8 h-5 bg-white/10 rounded fa-shim-cc"></div>
-                            <div class="w-8 h-5 bg-white/10 rounded fa-shim-cc"></div>
-                        </div>
-                    </div>
-
-                    <!-- Summary -->
-                    <div class="bg-white/5 rounded-lg p-4 mb-6 border border-white/5">
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="text-tertiary font-chivoMono text-xs uppercase tracking-wider">Item</span>
-                            <span class="text-white font-chivoMono text-sm" id="payItemName">Pokemon Starter</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-tertiary font-chivoMono text-xs uppercase tracking-wider">Total</span>
-                            <span class="text-accent font-chivoMono text-lg font-bold" id="payItemPrice">$25.00</span>
-                        </div>
-                    </div>
-
-                    <!-- Dummy Form -->
-                    <form id="paymentForm" onsubmit="event.preventDefault();">
-                        <div class="space-y-4">
-                            <div>
-                                <label
-                                    class="block text-tertiary font-chivoMono text-[10px] uppercase tracking-wider mb-1">Email</label>
-                                <input type="email" value="player1@example.com"
-                                    class="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50"
-                                    readonly>
-                            </div>
-                            <div>
-                                <label
-                                    class="block text-tertiary font-chivoMono text-[10px] uppercase tracking-wider mb-1">Card
-                                    Information</label>
-                                <div class="relative">
-                                    <input type="text" placeholder="0000 0000 0000 0000"
-                                        class="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50 pl-10">
-                                    <div class="absolute left-3 top-2.5 w-4 h-4 bg-white/20 rounded-sm"></div>
-                                </div>
-                                <div class="flex gap-3 mt-3">
-                                    <input type="text" placeholder="MM / YY"
-                                        class="w-1/2 bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50">
-                                    <input type="text" placeholder="CVC"
-                                        class="w-1/2 bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pay Button -->
-                        <button id="confirmPayBtn" type="submit"
-                            class="w-full mt-6 bg-[#D20505] hover:bg-red-600 text-white font-chivoMono text-sm font-bold py-3 rounded-lg shadow-[0_0_15px_rgba(210,5,5,0.4)] transition-all transform active:scale-95 flex justify-center items-center gap-2">
-                            <span>PAY NOW</span>
-                            <span id="payBtnAmount">$25.00</span>
-                        </button>
-                    </form>
-
-                    <!-- Secure Badge -->
-                    <div class="mt-4 flex justify-center items-center gap-2 opacity-50">
-                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                        <span class="text-[10px] font-chivoMono text-tertiary uppercase">256-bit SSL
-                            Encrypted</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pack-stage hidden">
-                <div class="pack-shake-container" id="activePack">
-                    <!-- Active Pack Image -->
-                </div>
-            </div>
-            <div class="reveal-stage hidden" id="revealedCard">
-                <div class="flex flex-col items-center animate-in fade-in zoom-in duration-500">
-                    <!-- Account Image -->
+                <!-- Payment Stage -->
+                <div id="paymentStage" class="hidden w-full max-w-md mx-auto p-4">
                     <div
-                        class="relative w-64 h-80 mb-6 rounded-xl overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.2)] border border-white/20 group">
-                        <img id="cardResultImg" src="" alt="Account Preview" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <span
-                                class="px-2 py-1 bg-yellow-500 text-black font-bold text-[10px] rounded uppercase tracking-wider mb-2 inline-block">Main
-                                Skin</span>
-                            <h3 class="text-white font-barlow text-xl leading-tight" id="mainSkinName">Black Knight
-                            </h3>
+                        class="bg-black/40 backdrop-blur-xl rounded-2xl border border-white/10 p-6 shadow-2xl relative overflow-hidden">
+                        <!-- Header -->
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-barlow text-2xl text-white font-bold">Secure Checkout</h3>
+                            <div class="flex gap-2 opacity-70">
+                                <div class="w-8 h-5 bg-white/10 rounded fa-shim-cc"></div>
+                                <div class="w-8 h-5 bg-white/10 rounded fa-shim-cc"></div>
+                            </div>
+                        </div>
+
+                        <!-- Summary -->
+                        <div class="bg-white/5 rounded-lg p-4 mb-6 border border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-tertiary font-chivoMono text-xs uppercase tracking-wider">Item</span>
+                                <span class="text-white font-chivoMono text-sm" id="payItemName">Pokemon Starter</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-tertiary font-chivoMono text-xs uppercase tracking-wider">Total</span>
+                                <span class="text-accent font-chivoMono text-lg font-bold"
+                                    id="payItemPrice">$25.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Dummy Form -->
+                        <form id="paymentForm" onsubmit="event.preventDefault();">
+                            <div class="space-y-4">
+                                <div>
+                                    <label
+                                        class="block text-tertiary font-chivoMono text-[10px] uppercase tracking-wider mb-1">Email</label>
+                                    <input type="email" value="player1@example.com"
+                                        class="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50"
+                                        readonly>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-tertiary font-chivoMono text-[10px] uppercase tracking-wider mb-1">Card
+                                        Information</label>
+                                    <div class="relative">
+                                        <input type="text" placeholder="0000 0000 0000 0000"
+                                            class="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50 pl-10">
+                                        <div class="absolute left-3 top-2.5 w-4 h-4 bg-white/20 rounded-sm"></div>
+                                    </div>
+                                    <div class="flex gap-3 mt-3">
+                                        <input type="text" placeholder="MM / YY"
+                                            class="w-1/2 bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50">
+                                        <input type="text" placeholder="CVC"
+                                            class="w-1/2 bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pay Button -->
+                            <button id="confirmPayBtn" type="submit"
+                                class="w-full mt-6 bg-[#D20505] hover:bg-red-600 text-white font-chivoMono text-sm font-bold py-3 rounded-lg shadow-[0_0_15px_rgba(210,5,5,0.4)] transition-all transform active:scale-95 flex justify-center items-center gap-2">
+                                <span>PAY NOW</span>
+                                <span id="payBtnAmount">$25.00</span>
+                            </button>
+                        </form>
+
+                        <!-- Secure Badge -->
+                        <div class="mt-4 flex justify-center items-center gap-2 opacity-50">
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="text-[10px] font-chivoMono text-tertiary uppercase">256-bit SSL
+                                Encrypted</span>
                         </div>
                     </div>
-
-                    <!-- Account Title -->
-                    <h2 class="text-3xl font-barlow font-bold text-white mb-2 text-center text-glow"
-                        id="cardResultName">
-                        86 Skins + OG
-                    </h2>
-                    <div class="flex gap-2 mb-6" id="badgeContainer">
-                        <!-- Badges injected here -->
-                    </div>
-
-                    <!-- Stats Grid -->
-                    <div class="grid grid-cols-2 gap-3 w-full max-w-sm mb-6">
-                        <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
-                            <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Total Skins</div>
-                            <div class="text-2xl font-chivoMono text-white" id="statSkins">86</div>
-                        </div>
-                        <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
-                            <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">V-Bucks</div>
-                            <div class="text-2xl font-chivoMono text-accent" id="statVbucks">1,200</div>
-                        </div>
-                        <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
-                            <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Level</div>
-                            <div class="text-xl font-chivoMono text-white" id="statLevel">1,402</div>
-                        </div>
-                        <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
-                            <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Wins</div>
-                            <div class="text-xl font-chivoMono text-white" id="statWins">256</div>
-                        </div>
-                    </div>
-
-                    <!-- Financials -->
-                    <p class="text-lg font-chivoMono text-primary mb-1">Est. Value: <span id="cardValue"
-                            class="text-green-400 font-bold">$650</span></p>
-                    <button id="sellValue"
-                        class="text-sm font-chivoMono text-tertiary hover:text-white underline decoration-dotted decoration-white/30 mb-6">
-                        Sell for $0.00
-                    </button>
                 </div>
+
+                <div class="pack-stage hidden">
+                    <div class="pack-shake-container" id="activePack">
+                        <!-- Active Pack Image -->
+                    </div>
+                </div>
+                <div class="reveal-stage hidden" id="revealedCard">
+                    <div class="flex flex-col items-center animate-in fade-in zoom-in duration-500">
+                        <!-- Account Image -->
+                        <div
+                            class="relative w-64 h-80 mb-6 rounded-xl overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.2)] border border-white/20 group">
+                            <img id="cardResultImg" src="" alt="Account Preview" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <span
+                                    class="px-2 py-1 bg-yellow-500 text-black font-bold text-[10px] rounded uppercase tracking-wider mb-2 inline-block">Main
+                                    Skin</span>
+                                <h3 class="text-white font-barlow text-xl leading-tight" id="mainSkinName">Black Knight
+                                </h3>
+                            </div>
+                        </div>
+
+                        <!-- Account Title -->
+                        <h2 class="text-3xl font-barlow font-bold text-white mb-2 text-center text-glow"
+                            id="cardResultName">
+                            86 Skins + OG
+                        </h2>
+                        <div class="flex gap-2 mb-6" id="badgeContainer">
+                            <!-- Badges injected here -->
+                        </div>
+
+                        <!-- Stats Grid -->
+                        <div class="grid grid-cols-2 gap-3 w-full max-w-sm mb-6">
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
+                                <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Total Skins</div>
+                                <div class="text-2xl font-chivoMono text-white" id="statSkins">86</div>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
+                                <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">V-Bucks</div>
+                                <div class="text-2xl font-chivoMono text-accent" id="statVbucks">1,200</div>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
+                                <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Level</div>
+                                <div class="text-xl font-chivoMono text-white" id="statLevel">1,402</div>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
+                                <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Wins</div>
+                                <div class="text-xl font-chivoMono text-white" id="statWins">256</div>
+                            </div>
+                        </div>
+
+                        <!-- Financials -->
+                        <p class="text-lg font-chivoMono text-primary mb-1">Est. Value: <span id="cardValue"
+                                class="text-green-400 font-bold">$650</span></p>
+                        <button id="sellValue"
+                            class="text-sm font-chivoMono text-tertiary hover:text-white underline decoration-dotted decoration-white/30 mb-6">
+                            Sell for $0.00
+                        </button>
+                    </div>
+                </div>
+                <button id="ripBtn" class="btn btn-cta">RIP PACK</button>
             </div>
-            <button id="ripBtn" class="btn btn-cta">RIP PACK</button>
         </div>
-    </div>
     </div>
 
     <script src="js/services.js"></script>
@@ -352,213 +346,19 @@
     <!-- Account Details Modal -->
     <!-- Custom Styles for Modal to bypass missing Tailwind classes -->
     <!-- Custom "Pure CSS" Modal Styles -->
-    <style>
-        /* Modal Overlay & Container */
-        .ac-modal-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 50;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-        }
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div>&copy; 2026 DOPEWORD. All Rights Reserved.</div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Support</a>
+                <a href="#" class="footer-link">Discord</a>
+            </div>
+        </div>
+    </footer>
 
-        .ac-modal-content {
-            background-color: #0f0c29;
-            width: 100%;
-            max-width: 1100px;
-            height: 85vh;
-            max-height: 800px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Responsive Layout Switch */
-        @media (min-width: 900px) {
-            .ac-modal-content {
-                flex-direction: row;
-            }
-        }
-
-        /* Left Column: Hero */
-        .ac-col-left {
-            width: 100%;
-            height: 250px;
-            position: relative;
-            flex-shrink: 0;
-            background: #000;
-        }
-
-        @media (min-width: 900px) {
-            .ac-col-left {
-                width: 350px;
-                height: 100%;
-                border-right: 1px solid rgba(255, 255, 255, 0.1);
-            }
-        }
-
-        .ac-hero-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .ac-hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, #0f0c29 0%, rgba(15, 12, 41, 0.4) 60%, transparent 100%);
-        }
-
-        .ac-hero-text {
-            position: absolute;
-            bottom: 24px;
-            left: 24px;
-            right: 24px;
-            z-index: 10;
-        }
-
-        /* Right Column: Content */
-        .ac-col-right {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            background-color: #0f0c29;
-        }
-
-        /* Header */
-        .ac-header {
-            padding: 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.02);
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .ac-close-btn {
-            position: absolute;
-            top: 16px;
-            right: 20px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 28px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .ac-close-btn:hover {
-            color: white;
-        }
-
-        /* Scroll Area */
-        .ac-scroll-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 24px;
-        }
-
-        /* Info Grid */
-        .ac-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        @media (min-width: 600px) {
-            .ac-stats-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        .ac-stat-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-        }
-
-        /* Inventory Grid */
-        .ac-inv-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        @media (min-width: 600px) {
-            .ac-inv-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .ac-inv-card {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 12px;
-        }
-
-        .ac-inv-img {
-            width: 100%;
-            height: 100px;
-            background: #000;
-            border-radius: 4px;
-            object-fit: cover;
-            margin-top: 8px;
-            opacity: 0.8;
-            transition: opacity 0.2s;
-        }
-
-        .ac-inv-card:hover .ac-inv-img {
-            opacity: 1;
-        }
-
-        /* Footer */
-        .ac-footer {
-            padding: 16px 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.2);
-            display: flex;
-            gap: 12px;
-            flex-shrink: 0;
-        }
-
-        .ac-btn {
-            flex: 1;
-            padding: 14px;
-            border-radius: 8px;
-            font-family: inherit;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-        }
-
-        .ac-btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        .ac-btn-primary {
-            background: #bf00ff;
-            /* Accent Purple */
-            border: none;
-            color: white;
-            box-shadow: 0 0 15px rgba(191, 0, 255, 0.4);
-        }
-    </style>
+    <!-- Custom Modal Styles Moved to css/theme.css -->
 
     <!-- Account Details Modal HTML -->
     <div id="accountDetailsModal" class="ac-modal-overlay hidden fade-in">
@@ -664,8 +464,7 @@
 
                 <!-- Footer -->
                 <div class="ac-footer">
-                    <button class="ac-btn ac-btn-secondary">Add to Cart</button>
-                    <button class="ac-btn ac-btn-primary">Buy Now</button>
+                    <!-- spacer element -->
                 </div>
             </div>
         </div>

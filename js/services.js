@@ -1,11 +1,10 @@
 // --- DATA CONFIGURATION ---
 const PACK_TIERS = [
-    { id: 'starter', name: 'Starter', price: 25, color: '#333333', odds: 'Top Hit: $400+' },
-    { id: 'silver', name: 'Silver', price: 50, color: '#C0C0C0', odds: 'Top Hit: $800+' },
-    { id: 'gold', name: 'Gold', price: 100, color: '#FFD700', odds: 'Top Hit: $2,500+' },
-    { id: 'platinum', name: 'Platinum', price: 500, color: '#E5E4E2', odds: 'Top Hit: $10,000+' },
-    { id: 'diamond', name: 'Diamond', price: 1000, color: '#B9F2FF', odds: 'Top Hit: $25,000+' },
-    { id: 'lunar', name: 'Lunar', price: 2500, color: '#FF4444', odds: 'Top Hit: $75,000+' }
+    { id: 'starter', name: 'Starter', price: 25, color: '#333333', odds: '10-30 Skins | Low V-Bucks' },
+    { id: 'silver', name: 'Silver', price: 50, color: '#C0C0C0', odds: '30-80 Skins | Mid V-Bucks' },
+    { id: 'gold', name: 'Gold', price: 100, color: '#FFD700', odds: '80-150 Skins | High V-Bucks' },
+    { id: 'platinum', name: 'Platinum', price: 500, color: '#E5E4E2', odds: '150+ Skins | Rare Exclusives' },
+    { id: 'diamond', name: 'Diamond', price: 1000, color: '#B9F2FF', odds: 'OG Skins (Black Knight / Renegade)' },
 ];
 
 const ODDS_CONFIG = [
@@ -18,47 +17,114 @@ const ODDS_CONFIG = [
 ];
 
 // --- INTERNAL INVENTORY (SERVER SIDE SIMULATION) ---
-// In a real app, this array would NOT exist on the client.
-// It would live in a secure database (Postgres/Mongo).
 const INTERNAL_INVENTORY = [];
 
-// Helper to seed the mock database
+// Rare Skins Database for Title Generation
+const RARE_SKINS = [
+    'Black Knight', 'Renegade Raider', 'Aerial Assault Trooper', 'Galaxy', 'IKONIK',
+    'Ghoul Trooper (OG)', 'Skull Trooper (OG)', 'The Reaper', 'Sparkle Specialist',
+    'Travis Scott', 'Wildcat', 'Wonder', 'Honor Guard'
+];
+
+const COMMON_SKINS = [
+    'Aura', 'Crystal', 'Dynamo', 'Soccer Skin', 'Fishstick', 'Peely',
+    'Drift', 'Midas', 'Jules', 'Brite Bomber'
+];
+
+function generateAccount(pack, valueMultiplier) {
+    const isHighTier = pack.price >= 500;
+    const isJackpot = valueMultiplier > 8.0;
+
+    // 1. Generate Stats based on Pack Level & Luck
+    let baseSkins = 10;
+    if (pack.id === 'silver') baseSkins = 30;
+    if (pack.id === 'gold') baseSkins = 80;
+    if (pack.id === 'platinum') baseSkins = 150;
+    if (pack.id === 'diamond') baseSkins = 200;
+
+    // Apply Random Variance
+    const skinCount = Math.floor(baseSkins * valueMultiplier * (0.8 + Math.random() * 0.4));
+    const vbucks = Math.floor(Math.random() * 50) * 100 + (isHighTier ? 1000 : 0);
+    const level = Math.floor(Math.random() * 2000) + 100;
+    const wins = Math.floor(Math.random() * 500);
+
+    // 2. Select Main "Hero" Skin for Title
+    let mainSkin = COMMON_SKINS[Math.floor(Math.random() * COMMON_SKINS.length)];
+    let badges = [];
+
+    // High Tier Logic
+    if (isHighTier || isJackpot || valueMultiplier > 2.0) {
+        if (Math.random() > 0.5 || pack.id === 'diamond') {
+            mainSkin = RARE_SKINS[Math.floor(Math.random() * RARE_SKINS.length)];
+            badges.push('OG');
+        } else {
+            mainSkin = `Stack of ${skinCount} Skins`;
+            badges.push('STACKED');
+        }
+    }
+
+    // 3. Generate Title
+    const title = `${skinCount} Skins + ${mainSkin}`;
+
+    // 4. Calculate Market Value (Mock)
+    const rawValue = Math.floor(pack.price * valueMultiplier);
+
+    // 5. Image (Use placeholder for now, would be skin render)
+    // Dynamic text color based on rarity
+    let bg = '333333'; // Common (Grey)
+    if (valueMultiplier >= 1.5) bg = '0078FF'; // Rare (Blue)
+    if (valueMultiplier >= 3.0) bg = 'A335EE'; // Epic (Purple)
+    if (valueMultiplier >= 8.0) bg = 'FFD700'; // Legendary (Gold)
+
+    if (pack.id === 'diamond' || pack.id === 'lunar') {
+        bg = isJackpot ? 'E0115F' : 'FFae00'; // Exotic / Mythic
+    }
+
+    const fg = 'FFFFFF';
+    const text = mainSkin.replace(/ /g, '+');
+    const img = `https://placehold.co/400x560/${bg}/${fg}?text=${text}`;
+
+    return {
+        id: crypto.randomUUID(),
+        title: title,
+        name: title, // Backwards compatibility for UI
+        category: 'fortnite',
+        level: pack.id,
+        price_label: `$${rawValue.toLocaleString()}`,
+        value: `$${rawValue.toLocaleString()}`, // Backwards compatibility
+        raw_value: rawValue,
+        img: img,
+        stats: {
+            skins: skinCount,
+            vbucks: vbucks,
+            level: level,
+            wins: wins,
+            main_skin: mainSkin
+        },
+        badges: badges,
+        platform: ['PC', 'PSN', 'XBOX'],
+        email_access: true
+    };
+}
+
+// Seed Database
 function seedDatabase() {
-    const ranges = [
-        { min: 0.5, max: 0.8, count: 8 },  // 40% - Loss
-        { min: 0.8, max: 1.0, count: 6 },  // 30% - Break Even
-        { min: 1.1, max: 1.8, count: 4 },  // 20% - Small Win
-        { min: 2.0, max: 3.5, count: 1 },  // 5% - Big Win
-        { min: 4.0, max: 8.0, count: 1 }   // 5% - Jackpot
-    ];
-
-    const icons = { 'pokemon': 'Poke', 'football': 'NFL', 'baseball': 'MLB', 'basketball': 'NBA' };
-
+    // Generate inventory for Fortnite only
     PACK_TIERS.forEach(pack => {
-        ['pokemon', 'football', 'baseball', 'basketball'].forEach(category => {
-            ranges.forEach((range, rIdx) => {
-                for (let i = 0; i < range.count; i++) {
-                    const val = Math.round(pack.price * (range.min + Math.random() * (range.max - range.min)));
-                    const isHit = range.min >= 1.0;
-                    const name = isHit
-                        ? `${category.charAt(0).toUpperCase() + category.slice(1)} ${pack.id.charAt(0).toUpperCase() + pack.id.slice(1)} Hit #${rIdx}-${i}`
-                        : `${category.charAt(0).toUpperCase() + category.slice(1)} Common #${rIdx}-${i}`;
+        // Generate distribution based on ODDS_CONFIG
+        ODDS_CONFIG.forEach((config) => {
+            // Number of items to generate per bucket
+            // We scale this up slightly for better variety
+            const count = Math.ceil(config.weight / 2);
 
-                    INTERNAL_INVENTORY.push({
-                        id: crypto.randomUUID(),
-                        category,
-                        level: pack.id,
-                        name: name,
-                        grade: isHit ? (range.min > 2 ? 'PSA 10' : 'PSA 9') : 'Raw',
-                        value: `$${val.toLocaleString()}`,
-                        raw_value: val, // Integer for math
-                        img: `https://placehold.co/400x560/${isHit ? 'FFD700' : '333333'}/FFFFFF?text=${icons[category]}+${isHit ? 'HIT' : 'Base'}`
-                    });
-                }
-            });
+            for (let i = 0; i < count; i++) {
+                const multiplier = config.minMult + Math.random() * (config.maxMult - config.minMult);
+                const account = generateAccount(pack, multiplier);
+                INTERNAL_INVENTORY.push(account);
+            }
         });
     });
-    console.log(`[Server] Database Seeded with ${INTERNAL_INVENTORY.length} items.`);
+    console.log(`[Server] Database Seeded with ${INTERNAL_INVENTORY.length} Fortnite Accounts.`);
 }
 
 seedDatabase();
@@ -66,41 +132,33 @@ seedDatabase();
 // --- PUBLIC API (MOCK) ---
 class ShopService {
 
-    // GET /api/config
     static getPackTiers() {
         return PACK_TIERS;
     }
 
-    // GET /api/odds
     static getOdds() {
         return ODDS_CONFIG;
     }
 
-    // GET /api/chase-cards
-    // Returns a "Safe View" of top hits for display only.
+    // Returns "Safe View" for UI
     static getPreviewCards(category, level) {
-        // Filter from the "hidden" inventory
-        const matches = INTERNAL_INVENTORY.filter(c => c.category === category && c.level === level);
+        // Filter
+        let matches = INTERNAL_INVENTORY.filter(c => c.category === 'fortnite' && c.level === level);
 
-        // Sort by Value Descending
+        // Sort by Value (Best First)
         matches.sort((a, b) => b.raw_value - a.raw_value);
 
-        // Return top 6
+        // Return Top 6
         return matches.slice(0, 6);
     }
 
-    // POST /api/open-pack
-    // Securely selects a card on the "server"
     static openPack(category, level) {
-        // 1. Validate Request
         const pack = PACK_TIERS.find(p => p.id === level);
         if (!pack) throw new Error("Invalid Pack Level");
 
-        // 2. Get Eligible Pool from Inventory
-        // In a real DB, we would query `SELECT * FROM items WHERE category = ? AND level = ? AND sold = false`
-        const pool = INTERNAL_INVENTORY.filter(c => c.category === category && c.level === level);
+        const pool = INTERNAL_INVENTORY.filter(c => c.category === 'fortnite' && c.level === level);
 
-        // 3. RNG Logic (Weighted)
+        // Weighted RNG
         const rand = Math.random() * 100;
         let cumulative = 0;
         let selectedBucket = null;
@@ -114,7 +172,7 @@ class ShopService {
         }
         if (!selectedBucket) selectedBucket = ODDS_CONFIG[ODDS_CONFIG.length - 1];
 
-        // 4. Filter Pool by Bucket
+        // Filter by Bucket
         const basePrice = pack.price;
         const bucketCards = pool.filter(c => {
             const min = basePrice * selectedBucket.minMult;
@@ -122,16 +180,17 @@ class ShopService {
             return c.raw_value >= min && c.raw_value <= max;
         });
 
-        // 5. Select Winner
-        // Fallback to general pool if bucket is empty (rare edge case in small datasets)
+        // Fallback
         const finalPool = bucketCards.length > 0 ? bucketCards : pool;
         const winner = finalPool[Math.floor(Math.random() * finalPool.length)];
 
-        // 6. Return Data
         return {
             ...winner,
-            tx_id: crypto.randomUUID(), // Mock Transaction ID
+            tx_id: crypto.randomUUID(),
             timestamp: new Date().toISOString()
         };
     }
 }
+
+// Expose to Global Scope explicitly for Modules
+window.ShopService = ShopService;

@@ -19,7 +19,7 @@
         <!-- Header -->
         <header class="main-header">
             <div class="logo-container">
-                <div class="gs-logo">GAMESTOP</div>
+                <div class="gs-logo">ACCOUNTSTOP</div>
                 <div class="divider">|</div>
                 <div class="sub-logo">POWER PACKS</div>
             </div>
@@ -91,9 +91,10 @@
                                             <div class="pb-8">
                                                 <h4
                                                     class="m-0 mb-1 p-0 font-barlow text-lg font-bold capitalize text-primary md:mb-2 md:text-2xl">
-                                                    Platinum Chase Cards</h4>
-                                                <p class="m-0 p-0 font-chivoMono text-xs text-tertiary">Cards available
-                                                    to grab from the listed pack level.</p>
+                                                    Platinum Chase Accounts</h4>
+                                                <p class="m-0 p-0 font-chivoMono text-xs text-tertiary">Accounts
+                                                    available
+                                                    to grab from the listed Account level.</p>
                                             </div>
                                             <div class="grid grid-cols-[repeat(auto-fill,minmax(95px,1fr))] place-items-center gap-10 md:grid-cols-[repeat(auto-fill,minmax(127px,1fr))]"
                                                 id="chaseCarousel">
@@ -112,50 +113,26 @@
                                             <div class="custom-scrollbar flex-1 overflow-y-auto">
                                                 <div class="px-6 pt-6 md:pt-10">
 
-                                                    <!-- Pack Select -->
                                                     <div class="block md:block">
                                                         <h4
                                                             class="font-barlow text-lg font-bold capitalize text-primary md:text-[26px]">
-                                                            Pack Select</h4>
+                                                            Platform</h4>
                                                         <div class="grid grid-cols-2 gap-2 pt-6">
                                                             <button
                                                                 class="btn-pack-select box-border w-full rounded-xl p-4 text-left transition focus:outline-none relative flex min-h-[90px] flex-col items-center justify-center border-2 border-[#FFFFFF] bg-tertiary px-2 py-4 active-category"
-                                                                data-category="pokemon">
-                                                                <img alt="Pokémon" class="h-14 w-14 object-contain mb-2"
-                                                                    src="https://placehold.co/56x56/transparent/white?text=Poke">
+                                                                data-category="fortnite">
+                                                                <div class="text-4xl mb-2">🖥️</div>
                                                                 <p
                                                                     class="pt-2 font-chivoMono text-base capitalize leading-none text-primary">
-                                                                    Pokémon</p>
+                                                                    PC / EPIC</p>
                                                             </button>
                                                             <button
                                                                 class="btn-pack-select box-border w-full rounded-xl p-4 text-left transition focus:outline-none relative flex min-h-[90px] flex-col items-center justify-center border-2 border-primary px-2 py-4 hover:border-[#FFFFFF]"
-                                                                data-category="football">
-                                                                <img alt="Football"
-                                                                    class="h-14 w-14 object-contain mb-2"
-                                                                    src="https://placehold.co/56x56/transparent/white?text=FB">
+                                                                data-category="fortnite">
+                                                                <div class="text-4xl mb-2">🎮</div>
                                                                 <p
                                                                     class="pt-2 font-chivoMono text-base capitalize leading-none text-primary">
-                                                                    Football</p>
-                                                            </button>
-                                                            <button
-                                                                class="btn-pack-select box-border w-full rounded-xl p-4 text-left transition focus:outline-none relative flex min-h-[90px] flex-col items-center justify-center border-2 border-primary px-2 py-4 hover:border-[#FFFFFF]"
-                                                                data-category="baseball">
-                                                                <img alt="Baseball"
-                                                                    class="h-14 w-14 object-contain mb-2"
-                                                                    src="https://placehold.co/56x56/transparent/white?text=BB">
-                                                                <p
-                                                                    class="pt-2 font-chivoMono text-base capitalize leading-none text-primary">
-                                                                    Baseball</p>
-                                                            </button>
-                                                            <button
-                                                                class="btn-pack-select box-border w-full rounded-xl p-4 text-left transition focus:outline-none relative flex min-h-[90px] flex-col items-center justify-center border-2 border-primary px-2 py-4 hover:border-[#FFFFFF]"
-                                                                data-category="basketball">
-                                                                <img alt="Basketball"
-                                                                    class="h-14 w-14 object-contain mb-2"
-                                                                    src="https://placehold.co/56x56/transparent/white?text=Bball">
-                                                                <p
-                                                                    class="pt-2 font-chivoMono text-base capitalize leading-none text-primary">
-                                                                    Basketball</p>
+                                                                    Console</p>
                                                             </button>
                                                         </div>
                                                     </div>
@@ -316,16 +293,57 @@
                     </div>
                 </div>
                 <div class="reveal-stage hidden" id="revealedCard">
-                    <div class="glow-effect"></div>
-                    <img src="" alt="Revealed Card" class="card-image" id="cardResultImg">
-                    <h3 id="cardResultName">Charizard 1st Edition</h3>
-                    <div class="card-stats">
-                        <span class="grade" id="cardGrade">PSA 10</span>
-                        <span class="value" id="cardValue">$25,000</span>
-                    </div>
-                    <div class="modal-actions">
-                        <button class="btn btn-secondary">Sell for <span id="sellValue">$20k</span></button>
-                        <button class="btn btn-primary">Add to Collection</button>
+                    <div class="flex flex-col items-center animate-in fade-in zoom-in duration-500">
+                        <!-- Account Image -->
+                        <div
+                            class="relative w-64 h-80 mb-6 rounded-xl overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.2)] border border-white/20 group">
+                            <img id="cardResultImg" src="" alt="Account Preview" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <span
+                                    class="px-2 py-1 bg-yellow-500 text-black font-bold text-[10px] rounded uppercase tracking-wider mb-2 inline-block">Main
+                                    Skin</span>
+                                <h3 class="text-white font-barlow text-xl leading-tight" id="mainSkinName">Black Knight
+                                </h3>
+                            </div>
+                        </div>
+
+                        <!-- Account Title -->
+                        <h2 class="text-3xl font-barlow font-bold text-white mb-2 text-center text-glow"
+                            id="cardResultName">
+                            86 Skins + OG
+                        </h2>
+                        <div class="flex gap-2 mb-6" id="badgeContainer">
+                            <!-- Badges injected here -->
+                        </div>
+
+                        <!-- Stats Grid -->
+                        <div class="grid grid-cols-2 gap-3 w-full max-w-sm mb-6">
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
+                                <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Total Skins</div>
+                                <div class="text-2xl font-chivoMono text-white" id="statSkins">86</div>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
+                                <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">V-Bucks</div>
+                                <div class="text-2xl font-chivoMono text-accent" id="statVbucks">1,200</div>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
+                                <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Level</div>
+                                <div class="text-xl font-chivoMono text-white" id="statLevel">1,402</div>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
+                                <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Wins</div>
+                                <div class="text-xl font-chivoMono text-white" id="statWins">256</div>
+                            </div>
+                        </div>
+
+                        <!-- Financials -->
+                        <p class="text-lg font-chivoMono text-primary mb-1">Est. Value: <span id="cardValue"
+                                class="text-green-400 font-bold">$650</span></p>
+                        <button id="sellValue"
+                            class="text-sm font-chivoMono text-tertiary hover:text-white underline decoration-dotted decoration-white/30 mb-6">
+                            Sell for $0.00
+                        </button>
                     </div>
                 </div>
                 <button id="ripBtn" class="btn btn-cta">RIP PACK</button>
@@ -334,6 +352,357 @@
     </div>
 
     <script src="js/services.js"></script>
+    <!-- Account Details Modal -->
+    <!-- Account Details Modal -->
+    <!-- Custom Styles for Modal to bypass missing Tailwind classes -->
+    <!-- Custom "Pure CSS" Modal Styles -->
+    <style>
+        /* Modal Overlay & Container */
+        .ac-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .ac-modal-content {
+            background-color: #0f0c29;
+            width: 100%;
+            max-width: 1100px;
+            height: 85vh;
+            max-height: 800px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Responsive Layout Switch */
+        @media (min-width: 900px) {
+            .ac-modal-content {
+                flex-direction: row;
+            }
+        }
+
+        /* Left Column: Hero */
+        .ac-col-left {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            flex-shrink: 0;
+            background: #000;
+        }
+
+        @media (min-width: 900px) {
+            .ac-col-left {
+                width: 350px;
+                height: 100%;
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        .ac-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ac-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #0f0c29 0%, rgba(15, 12, 41, 0.4) 60%, transparent 100%);
+        }
+
+        .ac-hero-text {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            right: 24px;
+            z-index: 10;
+        }
+
+        /* Right Column: Content */
+        .ac-col-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: #0f0c29;
+        }
+
+        /* Header */
+        .ac-header {
+            padding: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .ac-close-btn {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .ac-close-btn:hover {
+            color: white;
+        }
+
+        /* Scroll Area */
+        .ac-scroll-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        /* Info Grid */
+        .ac-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        @media (min-width: 600px) {
+            .ac-stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .ac-stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        /* Inventory Grid */
+        .ac-inv-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        @media (min-width: 600px) {
+            .ac-inv-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .ac-inv-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .ac-inv-img {
+            width: 100%;
+            height: 100px;
+            background: #000;
+            border-radius: 4px;
+            object-fit: cover;
+            margin-top: 8px;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .ac-inv-card:hover .ac-inv-img {
+            opacity: 1;
+        }
+
+        /* Footer */
+        .ac-footer {
+            padding: 16px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .ac-btn {
+            flex: 1;
+            padding: 14px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .ac-btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .ac-btn-primary {
+            background: #bf00ff;
+            /* Accent Purple */
+            border: none;
+            color: white;
+            box-shadow: 0 0 15px rgba(191, 0, 255, 0.4);
+        }
+    </style>
+
+    <!-- Account Details Modal HTML -->
+    <div id="accountDetailsModal" class="ac-modal-overlay hidden fade-in">
+        <div class="ac-modal-content">
+
+            <!-- Left: Hero -->
+            <div class="ac-col-left">
+                <img id="detailHeroImg" src="" alt="Hero" class="ac-hero-img">
+                <div class="ac-hero-overlay"></div>
+                <div class="ac-hero-text">
+                    <span
+                        style="background: #eab308; color: black; font-weight: bold; font-size: 10px; padding: 4px 8px; border-radius: 4px; text-transform: uppercase;">Legendary</span>
+                    <h2 id="detailTitle"
+                        style="color: white; font-family: 'Oswald', sans-serif; font-size: 24px; line-height: 1.2; margin-top: 8px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+                    </h2>
+                </div>
+            </div>
+
+            <!-- Right: Content -->
+            <div class="ac-col-right">
+                <!-- Header -->
+                <div class="ac-header">
+                    <button class="close-details-modal ac-close-btn">&times;</button>
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                            <span style="font-family: 'Chivo Mono', monospace; font-size: 14px; color: #a1a1aa;">LVL
+                                <span id="detailLevel" style="color: white; font-weight: bold;"></span></span>
+                            <span
+                                style="width: 4px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 50%;"></span>
+                            <span style="font-family: 'Chivo Mono', monospace; font-size: 14px; color: #a1a1aa;"><span
+                                    id="detailWins" style="color: white; font-weight: bold;"></span> WINS</span>
+                        </div>
+                        <div id="detailPrice"
+                            style="color: #bf00ff; font-family: 'Chivo Mono', monospace; font-size: 28px; font-weight: bold;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scroll Body -->
+                <div class="ac-scroll-content custom-scrollbar">
+
+                    <!-- Stats -->
+                    <div class="ac-stats-grid">
+                        <div class="ac-stat-box">
+                            <div
+                                style="font-size: 10px; text-transform: uppercase; color: #a1a1aa; margin-bottom: 4px;">
+                                Total Skins</div>
+                            <div id="detailSkinCount"
+                                style="font-size: 20px; font-family: 'Chivo Mono', monospace; color: white;"></div>
+                        </div>
+                        <div class="ac-stat-box">
+                            <div
+                                style="font-size: 10px; text-transform: uppercase; color: #a1a1aa; margin-bottom: 4px;">
+                                V-Bucks</div>
+                            <div id="detailVbucks"
+                                style="font-size: 20px; font-family: 'Chivo Mono', monospace; color: #bf00ff;"></div>
+                        </div>
+                        <div class="ac-stat-box">
+                            <div
+                                style="font-size: 10px; text-transform: uppercase; color: #a1a1aa; margin-bottom: 4px;">
+                                Platform</div>
+                            <div id="detailPlatform"
+                                style="font-size: 16px; font-family: 'Chivo Mono', monospace; color: white;"></div>
+                        </div>
+                        <div class="ac-stat-box">
+                            <div
+                                style="font-size: 10px; text-transform: uppercase; color: #a1a1aa; margin-bottom: 4px;">
+                                Safe</div>
+                            <div style="font-size: 16px; font-family: 'Chivo Mono', monospace; color: #4ade80;">Yes
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inventory -->
+                    <h4
+                        style="color: white; font-family: 'Oswald', sans-serif; font-size: 18px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
+                        Inventory Locker</h4>
+                    <div class="ac-inv-grid">
+                        <div class="ac-inv-card">
+                            <div style="display: flex; justify-content: space-between; color: white; font-size: 12px;">
+                                <span>Skins</span>
+                                <span style="color: #a1a1aa;">86 Total</span>
+                            </div>
+                            <img id="detailSkinsImg" src="" class="ac-inv-img">
+                        </div>
+                        <div class="ac-inv-card">
+                            <div style="display: flex; justify-content: space-between; color: white; font-size: 12px;">
+                                <span>Pickaxes</span>
+                                <span style="color: #a1a1aa;">84 Total</span>
+                            </div>
+                            <img id="detailPickaxesImg" src="" class="ac-inv-img">
+                        </div>
+                        <div class="ac-inv-card">
+                            <div style="display: flex; justify-content: space-between; color: white; font-size: 12px;">
+                                <span>Emotes</span>
+                                <span style="color: #a1a1aa;">103 Total</span>
+                            </div>
+                            <img id="detailEmotesImg" src="" class="ac-inv-img">
+                        </div>
+                        <div class="ac-inv-card">
+                            <div style="display: flex; justify-content: space-between; color: white; font-size: 12px;">
+                                <span>Gliders</span>
+                                <span style="color: #a1a1aa;">86 Total</span>
+                            </div>
+                            <img id="detailGlidersImg" src="" class="ac-inv-img">
+                        </div>
+                    </div>
+
+                    <!-- Reliable Info -->
+                    <h4
+                        style="color: white; font-family: 'Oswald', sans-serif; font-size: 18px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
+                        Reliable Info</h4>
+                    <div id="detailReliableInfo"
+                        style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px;">
+                        <!-- Injected -->
+                    </div>
+
+                    <!-- History -->
+                    <h4
+                        style="color: white; font-family: 'Oswald', sans-serif; font-size: 14px; margin-bottom: 8px; margin-top: 16px;">
+                        Recent Activity</h4>
+                    <div
+                        style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div id="detailTxHistory" style="display: flex; flex-direction: column; gap: 8px;">
+                            <!-- Activity Injected Here -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="ac-footer">
+                    <button class="ac-btn ac-btn-secondary">Add to Cart</button>
+                    <button class="ac-btn ac-btn-primary">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/mock_account_data.js"></script>
     <script src="js/app.js"></script>
 </body>
 

@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Oswald:wght@500;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="css/theme.css">
 </head>
 
 <body>
@@ -51,8 +52,7 @@
                                                 <div class="absolute inset-0 flex items-center justify-center bg-black">
 
                                                     <!-- 3D Pack Container (Replaces Static Image) -->
-                                                    <div class="stage-container" id="mainStage"
-                                                        style="width:100%; height:100%; background: transparent; display: flex; justify-content: center; align-items: center;">
+                                                    <div class="stage-container stage-inner" id="mainStage">
                                                         <div class="video-bg-container">
                                                             <div class="ambient-light"></div>
                                                         </div>
@@ -69,8 +69,7 @@
                                                                             STARTER</div>
                                                                     </div>
                                                                     <div class="pack-face pack-face-back">
-                                                                        <div class="pack-logo"
-                                                                            style="font-size: 1rem; color: #666;">
+                                                                        <div class="pack-logo pack-logo-small">
                                                                             GAMESTOP
                                                                         </div>
                                                                     </div>
@@ -89,7 +88,7 @@
                                         class="mt-4 transition-all duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1)] translate-y-0 opacity-100">
                                         <div class="md:rounded-3xl md:border md:border-primary md:bg-elevated md:p-6">
                                             <div class="pb-8">
-                                                <h4
+                                                <h4 id="chaseSectionTitle"
                                                     class="m-0 mb-1 p-0 font-barlow text-lg font-bold capitalize text-primary md:mb-2 md:text-2xl">
                                                     Platinum Chase Accounts</h4>
                                                 <p class="m-0 p-0 font-chivoMono text-xs text-tertiary">Accounts
@@ -106,89 +105,86 @@
 
                                 <!-- Right Column: Sidebar -->
                                 <div class="h-full p-0 lg:pb-10">
-                                    <div class="sticky top-15 size-full shrink-0 lg:w-[402px] transition-all duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1)] translate-y-0 scale-100 opacity-100"
-                                        style="max-height: calc(-100px + 100vh);">
+                                    <div class="sticky top-15 size-full shrink-0 lg:w-[402px] transition-all duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1)] translate-y-0 scale-100 opacity-100 sidebar-sticky"
                                         <div
-                                            class="flex h-full flex-col border border-secondary bg-elevated backdrop-blur-sm lg:rounded-3xl">
-                                            <div class="custom-scrollbar flex-1 overflow-y-auto">
-                                                <div class="px-6 pt-6 md:pt-10">
+                                        class="flex h-full flex-col border border-secondary bg-elevated backdrop-blur-sm lg:rounded-3xl">
+                                        <div class="custom-scrollbar flex-1 overflow-y-auto">
+                                            <div class="px-6 pt-6 md:pt-10">
 
-                                                    <div class="block md:block">
-                                                        <h4
-                                                            class="font-barlow text-lg font-bold capitalize text-primary md:text-[26px]">
-                                                            Platform</h4>
-                                                        <div class="grid grid-cols-2 gap-2 pt-6">
-                                                            <button
-                                                                class="btn-pack-select box-border w-full rounded-xl p-4 text-left transition focus:outline-none relative flex min-h-[90px] flex-col items-center justify-center border-2 border-[#FFFFFF] bg-tertiary px-2 py-4 active-category"
-                                                                data-category="fortnite">
-                                                                <div class="text-4xl mb-2">🖥️</div>
-                                                                <p
-                                                                    class="pt-2 font-chivoMono text-base capitalize leading-none text-primary">
-                                                                    PC / EPIC</p>
-                                                            </button>
-                                                            <button
-                                                                class="btn-pack-select box-border w-full rounded-xl p-4 text-left transition focus:outline-none relative flex min-h-[90px] flex-col items-center justify-center border-2 border-primary px-2 py-4 hover:border-[#FFFFFF]"
-                                                                data-category="fortnite">
-                                                                <div class="text-4xl mb-2">🎮</div>
-                                                                <p
-                                                                    class="pt-2 font-chivoMono text-base capitalize leading-none text-primary">
-                                                                    Console</p>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-
-                                                    <hr class="my-6 block border-primary md:block opacity-20">
-
-                                                    <!-- Level Select -->
-                                                    <div class="">
-                                                        <h4
-                                                            class="font-barlow text-lg font-bold capitalize text-primary md:text-[26px]">
-                                                            Level Select</h4>
-                                                        <p class="mt-1 font-chivoMono text-xs text-tertiary">Select your
-                                                            level to view values</p>
-                                                        <div class="grid grid-cols-3 gap-2 pt-6" id="levelSelectGrid">
-                                                            <!-- Populated by JS -->
-                                                        </div>
-                                                    </div>
-
-                                                    <hr class="my-6 block border-primary md:block opacity-20">
-
-                                                    <!-- Values -->
-                                                    <div class="mt-0 md:mt-0">
-                                                        <h4
-                                                            class="font-barlow text-lg font-bold capitalize text-primary md:text-[26px]">
-                                                            <span id="selectedLevelName">Starter</span> Values*
-                                                        </h4>
-                                                        <p class="mt-1 font-chivoMono text-xs text-tertiary">Average
-                                                            card value is $<span id="avgValue">25</span></p>
-                                                        <div class="flex flex-col gap-1 pt-6 pb-2" id="valuesList">
-                                                            <!-- Populated by JS -->
-                                                        </div>
-                                                        <p
-                                                            class="font-chivoMono text-xs font-normal text-tertiary mt-4">
-                                                            *Values are estimates...</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Sticky Footer -->
-                                            <div class="sticky bottom-0 mt-auto w-full">
-                                                <div
-                                                    class="flex flex-col border-t border-t-primary bg-elevated lg:bg-transparent">
-                                                    <div class="flex flex-col px-6 pb-4 pt-4 lg:p-6 lg:pt-6">
-                                                        <p
-                                                            class="mb-4 text-center font-chivoMono text-[10px]/[12px] font-normal text-tertiary">
-                                                            Terms apply...</p>
-                                                        <button id="sidebarBuyBtn"
-                                                            class="flex items-center justify-center whitespace-nowrap transition-colors focus:outline-none no-underline gap-2 min-w-28 px-5 border text-white hover:bg-red-600 border-[#D20505] bg-[#D20505] rounded-lg h-12 md:h-14 capitalize w-full shadow-[0_0_15px_rgba(210,5,5,0.4)]"
-                                                            type="button">
-                                                            <div class="text-center font-chivoMono">
-                                                                <p class="text-base font-bold">Buy Pack</p>
-                                                                <p class="text-sm font-normal">$<span
-                                                                        id="buyBtnPrice">25</span></p>
-                                                            </div>
+                                                <div class="block md:block">
+                                                    <h4
+                                                        class="font-barlow text-lg font-bold capitalize text-primary md:text-[26px]">
+                                                        Platform</h4>
+                                                    <div class="grid grid-cols-2 gap-2 pt-6">
+                                                        <button
+                                                            class="btn-pack-select box-border w-full rounded-xl p-4 text-left transition focus:outline-none relative flex min-h-[90px] flex-col items-center justify-center border-2 border-[#FFFFFF] bg-tertiary px-2 py-4 active-category"
+                                                            data-category="fortnite">
+                                                            <div class="text-4xl mb-2">🖥️</div>
+                                                            <p
+                                                                class="pt-2 font-chivoMono text-base capitalize leading-none text-primary">
+                                                                PC / EPIC</p>
+                                                        </button>
+                                                        <button
+                                                            class="btn-pack-select box-border w-full rounded-xl p-4 text-left transition focus:outline-none relative flex min-h-[90px] flex-col items-center justify-center border-2 border-primary px-2 py-4 hover:border-[#FFFFFF]"
+                                                            data-category="fortnite">
+                                                            <div class="text-4xl mb-2">🎮</div>
+                                                            <p
+                                                                class="pt-2 font-chivoMono text-base capitalize leading-none text-primary">
+                                                                Console</p>
                                                         </button>
                                                     </div>
+                                                </div>
+
+                                                <hr class="my-6 block border-primary md:block opacity-20">
+
+                                                <!-- Level Select -->
+                                                <div class="">
+                                                    <h4
+                                                        class="font-barlow text-lg font-bold capitalize text-primary md:text-[26px]">
+                                                        Level Select</h4>
+                                                    <p class="mt-1 font-chivoMono text-xs text-tertiary">Select your
+                                                        level to view values</p>
+                                                    <div class="grid grid-cols-3 gap-2 pt-6" id="levelSelectGrid">
+                                                        <!-- Populated by JS -->
+                                                    </div>
+                                                </div>
+
+                                                <hr class="my-6 block border-primary md:block opacity-20">
+
+                                                <!-- Values -->
+                                                <div class="mt-0 md:mt-0">
+                                                    <h4
+                                                        class="font-barlow text-lg font-bold capitalize text-primary md:text-[26px]">
+                                                        <span id="selectedLevelName">Starter</span> Values*
+                                                    </h4>
+                                                    <p class="mt-1 font-chivoMono text-xs text-tertiary">Average
+                                                        card value is $<span id="avgValue">25</span></p>
+                                                    <div class="flex flex-col gap-1 pt-6 pb-2" id="valuesList">
+                                                        <!-- Populated by JS -->
+                                                    </div>
+                                                    <p class="font-chivoMono text-xs font-normal text-tertiary mt-4">
+                                                        *Values are estimates...</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Sticky Footer -->
+                                        <div class="sticky bottom-0 mt-auto w-full">
+                                            <div
+                                                class="flex flex-col border-t border-t-primary bg-elevated lg:bg-transparent">
+                                                <div class="flex flex-col px-6 pb-4 pt-4 lg:p-6 lg:pt-6">
+                                                    <p
+                                                        class="mb-4 text-center font-chivoMono text-[10px]/[12px] font-normal text-tertiary">
+                                                        Terms apply...</p>
+                                                    <button id="sidebarBuyBtn"
+                                                        class="flex items-center justify-center whitespace-nowrap transition-colors focus:outline-none no-underline gap-2 min-w-28 px-5 border text-white hover:bg-red-600 border-[#D20505] bg-[#D20505] rounded-lg h-12 md:h-14 capitalize w-full shadow-[0_0_15px_rgba(210,5,5,0.4)]"
+                                                        type="button">
+                                                        <div class="text-center font-chivoMono">
+                                                            <p class="text-base font-bold">Buy Pack</p>
+                                                            <p class="text-sm font-normal">$<span
+                                                                    id="buyBtnPrice">25</span></p>
+                                                        </div>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -199,156 +195,156 @@
                     </div>
                 </div>
             </div>
-        </main>
+    </div>
+    </main>
 
-        <!-- Footer -->
-        <footer class="main-footer">
-            <p>&copy; 2024 GameStop Corp. All rights reserved. Power Packs is a trademark of GameStop.</p>
-            <div class="footer-links">
-                <a href="#">Terms & Conditions</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">FAQ</a>
-            </div>
-        </footer>
-
-        <!-- Pack Opening Modal -->
-        <div id="ripModal" class="modal hidden">
-            <div class="modal-content">
-                <button class="close-modal">&times;</button>
-
-                <!-- Payment Stage -->
-                <div id="paymentStage" class="hidden w-full max-w-md mx-auto p-4">
-                    <div
-                        class="bg-black/40 backdrop-blur-xl rounded-2xl border border-white/10 p-6 shadow-2xl relative overflow-hidden">
-                        <!-- Header -->
-                        <div class="flex items-center justify-between mb-6">
-                            <h3 class="font-barlow text-2xl text-white font-bold">Secure Checkout</h3>
-                            <div class="flex gap-2 opacity-70">
-                                <div class="w-8 h-5 bg-white/10 rounded fa-shim-cc"></div>
-                                <div class="w-8 h-5 bg-white/10 rounded fa-shim-cc"></div>
-                            </div>
-                        </div>
-
-                        <!-- Summary -->
-                        <div class="bg-white/5 rounded-lg p-4 mb-6 border border-white/5">
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-tertiary font-chivoMono text-xs uppercase tracking-wider">Item</span>
-                                <span class="text-white font-chivoMono text-sm" id="payItemName">Pokemon Starter</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-tertiary font-chivoMono text-xs uppercase tracking-wider">Total</span>
-                                <span class="text-accent font-chivoMono text-lg font-bold"
-                                    id="payItemPrice">$25.00</span>
-                            </div>
-                        </div>
-
-                        <!-- Dummy Form -->
-                        <form id="paymentForm" onsubmit="event.preventDefault();">
-                            <div class="space-y-4">
-                                <div>
-                                    <label
-                                        class="block text-tertiary font-chivoMono text-[10px] uppercase tracking-wider mb-1">Email</label>
-                                    <input type="email" value="player1@example.com"
-                                        class="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50"
-                                        readonly>
-                                </div>
-                                <div>
-                                    <label
-                                        class="block text-tertiary font-chivoMono text-[10px] uppercase tracking-wider mb-1">Card
-                                        Information</label>
-                                    <div class="relative">
-                                        <input type="text" placeholder="0000 0000 0000 0000"
-                                            class="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50 pl-10">
-                                        <div class="absolute left-3 top-2.5 w-4 h-4 bg-white/20 rounded-sm"></div>
-                                    </div>
-                                    <div class="flex gap-3 mt-3">
-                                        <input type="text" placeholder="MM / YY"
-                                            class="w-1/2 bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50">
-                                        <input type="text" placeholder="CVC"
-                                            class="w-1/2 bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Pay Button -->
-                            <button id="confirmPayBtn" type="submit"
-                                class="w-full mt-6 bg-[#D20505] hover:bg-red-600 text-white font-chivoMono text-sm font-bold py-3 rounded-lg shadow-[0_0_15px_rgba(210,5,5,0.4)] transition-all transform active:scale-95 flex justify-center items-center gap-2">
-                                <span>PAY NOW</span>
-                                <span id="payBtnAmount">$25.00</span>
-                            </button>
-                        </form>
-
-                        <!-- Secure Badge -->
-                        <div class="mt-4 flex justify-center items-center gap-2 opacity-50">
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                            <span class="text-[10px] font-chivoMono text-tertiary uppercase">256-bit SSL
-                                Encrypted</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pack-stage hidden">
-                    <div class="pack-shake-container" id="activePack">
-                        <!-- Active Pack Image -->
-                    </div>
-                </div>
-                <div class="reveal-stage hidden" id="revealedCard">
-                    <div class="flex flex-col items-center animate-in fade-in zoom-in duration-500">
-                        <!-- Account Image -->
-                        <div
-                            class="relative w-64 h-80 mb-6 rounded-xl overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.2)] border border-white/20 group">
-                            <img id="cardResultImg" src="" alt="Account Preview" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                            <div class="absolute bottom-4 left-4 right-4">
-                                <span
-                                    class="px-2 py-1 bg-yellow-500 text-black font-bold text-[10px] rounded uppercase tracking-wider mb-2 inline-block">Main
-                                    Skin</span>
-                                <h3 class="text-white font-barlow text-xl leading-tight" id="mainSkinName">Black Knight
-                                </h3>
-                            </div>
-                        </div>
-
-                        <!-- Account Title -->
-                        <h2 class="text-3xl font-barlow font-bold text-white mb-2 text-center text-glow"
-                            id="cardResultName">
-                            86 Skins + OG
-                        </h2>
-                        <div class="flex gap-2 mb-6" id="badgeContainer">
-                            <!-- Badges injected here -->
-                        </div>
-
-                        <!-- Stats Grid -->
-                        <div class="grid grid-cols-2 gap-3 w-full max-w-sm mb-6">
-                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
-                                <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Total Skins</div>
-                                <div class="text-2xl font-chivoMono text-white" id="statSkins">86</div>
-                            </div>
-                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
-                                <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">V-Bucks</div>
-                                <div class="text-2xl font-chivoMono text-accent" id="statVbucks">1,200</div>
-                            </div>
-                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
-                                <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Level</div>
-                                <div class="text-xl font-chivoMono text-white" id="statLevel">1,402</div>
-                            </div>
-                            <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
-                                <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Wins</div>
-                                <div class="text-xl font-chivoMono text-white" id="statWins">256</div>
-                            </div>
-                        </div>
-
-                        <!-- Financials -->
-                        <p class="text-lg font-chivoMono text-primary mb-1">Est. Value: <span id="cardValue"
-                                class="text-green-400 font-bold">$650</span></p>
-                        <button id="sellValue"
-                            class="text-sm font-chivoMono text-tertiary hover:text-white underline decoration-dotted decoration-white/30 mb-6">
-                            Sell for $0.00
-                        </button>
-                    </div>
-                </div>
-                <button id="ripBtn" class="btn btn-cta">RIP PACK</button>
-            </div>
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2024 GameStop Corp. All rights reserved. Power Packs is a trademark of GameStop.</p>
+        <div class="footer-links">
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">FAQ</a>
         </div>
+    </footer>
+
+    <!-- Pack Opening Modal -->
+    <div id="ripModal" class="modal hidden">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+
+            <!-- Payment Stage -->
+            <div id="paymentStage" class="hidden w-full max-w-md mx-auto p-4">
+                <div
+                    class="bg-black/40 backdrop-blur-xl rounded-2xl border border-white/10 p-6 shadow-2xl relative overflow-hidden">
+                    <!-- Header -->
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="font-barlow text-2xl text-white font-bold">Secure Checkout</h3>
+                        <div class="flex gap-2 opacity-70">
+                            <div class="w-8 h-5 bg-white/10 rounded fa-shim-cc"></div>
+                            <div class="w-8 h-5 bg-white/10 rounded fa-shim-cc"></div>
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="bg-white/5 rounded-lg p-4 mb-6 border border-white/5">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-tertiary font-chivoMono text-xs uppercase tracking-wider">Item</span>
+                            <span class="text-white font-chivoMono text-sm" id="payItemName">Pokemon Starter</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-tertiary font-chivoMono text-xs uppercase tracking-wider">Total</span>
+                            <span class="text-accent font-chivoMono text-lg font-bold" id="payItemPrice">$25.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Dummy Form -->
+                    <form id="paymentForm" onsubmit="event.preventDefault();">
+                        <div class="space-y-4">
+                            <div>
+                                <label
+                                    class="block text-tertiary font-chivoMono text-[10px] uppercase tracking-wider mb-1">Email</label>
+                                <input type="email" value="player1@example.com"
+                                    class="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50"
+                                    readonly>
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-tertiary font-chivoMono text-[10px] uppercase tracking-wider mb-1">Card
+                                    Information</label>
+                                <div class="relative">
+                                    <input type="text" placeholder="0000 0000 0000 0000"
+                                        class="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50 pl-10">
+                                    <div class="absolute left-3 top-2.5 w-4 h-4 bg-white/20 rounded-sm"></div>
+                                </div>
+                                <div class="flex gap-3 mt-3">
+                                    <input type="text" placeholder="MM / YY"
+                                        class="w-1/2 bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50">
+                                    <input type="text" placeholder="CVC"
+                                        class="w-1/2 bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-chivoMono text-sm focus:outline-none focus:border-accent/50">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pay Button -->
+                        <button id="confirmPayBtn" type="submit"
+                            class="w-full mt-6 bg-[#D20505] hover:bg-red-600 text-white font-chivoMono text-sm font-bold py-3 rounded-lg shadow-[0_0_15px_rgba(210,5,5,0.4)] transition-all transform active:scale-95 flex justify-center items-center gap-2">
+                            <span>PAY NOW</span>
+                            <span id="payBtnAmount">$25.00</span>
+                        </button>
+                    </form>
+
+                    <!-- Secure Badge -->
+                    <div class="mt-4 flex justify-center items-center gap-2 opacity-50">
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="text-[10px] font-chivoMono text-tertiary uppercase">256-bit SSL
+                            Encrypted</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pack-stage hidden">
+                <div class="pack-shake-container" id="activePack">
+                    <!-- Active Pack Image -->
+                </div>
+            </div>
+            <div class="reveal-stage hidden" id="revealedCard">
+                <div class="flex flex-col items-center animate-in fade-in zoom-in duration-500">
+                    <!-- Account Image -->
+                    <div
+                        class="relative w-64 h-80 mb-6 rounded-xl overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.2)] border border-white/20 group">
+                        <img id="cardResultImg" src="" alt="Account Preview" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span
+                                class="px-2 py-1 bg-yellow-500 text-black font-bold text-[10px] rounded uppercase tracking-wider mb-2 inline-block">Main
+                                Skin</span>
+                            <h3 class="text-white font-barlow text-xl leading-tight" id="mainSkinName">Black Knight
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Account Title -->
+                    <h2 class="text-3xl font-barlow font-bold text-white mb-2 text-center text-glow"
+                        id="cardResultName">
+                        86 Skins + OG
+                    </h2>
+                    <div class="flex gap-2 mb-6" id="badgeContainer">
+                        <!-- Badges injected here -->
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-2 gap-3 w-full max-w-sm mb-6">
+                        <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
+                            <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Total Skins</div>
+                            <div class="text-2xl font-chivoMono text-white" id="statSkins">86</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
+                            <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">V-Bucks</div>
+                            <div class="text-2xl font-chivoMono text-accent" id="statVbucks">1,200</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
+                            <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Level</div>
+                            <div class="text-xl font-chivoMono text-white" id="statLevel">1,402</div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 p-3 rounded-lg text-center">
+                            <div class="text-tertiary text-[10px] uppercase tracking-wider mb-1">Wins</div>
+                            <div class="text-xl font-chivoMono text-white" id="statWins">256</div>
+                        </div>
+                    </div>
+
+                    <!-- Financials -->
+                    <p class="text-lg font-chivoMono text-primary mb-1">Est. Value: <span id="cardValue"
+                            class="text-green-400 font-bold">$650</span></p>
+                    <button id="sellValue"
+                        class="text-sm font-chivoMono text-tertiary hover:text-white underline decoration-dotted decoration-white/30 mb-6">
+                        Sell for $0.00
+                    </button>
+                </div>
+            </div>
+            <button id="ripBtn" class="btn btn-cta">RIP PACK</button>
+        </div>
+    </div>
     </div>
 
     <script src="js/services.js"></script>
@@ -573,11 +569,8 @@
                 <img id="detailHeroImg" src="" alt="Hero" class="ac-hero-img">
                 <div class="ac-hero-overlay"></div>
                 <div class="ac-hero-text">
-                    <span
-                        style="background: #eab308; color: black; font-weight: bold; font-size: 10px; padding: 4px 8px; border-radius: 4px; text-transform: uppercase;">Legendary</span>
-                    <h2 id="detailTitle"
-                        style="color: white; font-family: 'Oswald', sans-serif; font-size: 24px; line-height: 1.2; margin-top: 8px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
-                    </h2>
+                    <span class="badge-legendary">Legendary</span>
+                    <h2 id="detailTitle" class="ac-title-large"></h2>
                 </div>
             </div>
 
@@ -587,17 +580,13 @@
                 <div class="ac-header">
                     <button class="close-details-modal ac-close-btn">&times;</button>
                     <div>
-                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-                            <span style="font-family: 'Chivo Mono', monospace; font-size: 14px; color: #a1a1aa;">LVL
-                                <span id="detailLevel" style="color: white; font-weight: bold;"></span></span>
-                            <span
-                                style="width: 4px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 50%;"></span>
-                            <span style="font-family: 'Chivo Mono', monospace; font-size: 14px; color: #a1a1aa;"><span
-                                    id="detailWins" style="color: white; font-weight: bold;"></span> WINS</span>
+                        <div class="ac-header-row">
+                            <span class="text-mono-sm">LVL
+                                <span id="detailLevel" class="text-white-bold"></span></span>
+                            <span class="dot-separator"></span>
+                            <span class="text-mono-sm"><span id="detailWins" class="text-white-bold"></span> WINS</span>
                         </div>
-                        <div id="detailPrice"
-                            style="color: #bf00ff; font-family: 'Chivo Mono', monospace; font-size: 28px; font-weight: bold;">
-                        </div>
+                        <div id="detailPrice" class="bs-price-large"></div>
                     </div>
                 </div>
 
@@ -607,86 +596,66 @@
                     <!-- Stats -->
                     <div class="ac-stats-grid">
                         <div class="ac-stat-box">
-                            <div
-                                style="font-size: 10px; text-transform: uppercase; color: #a1a1aa; margin-bottom: 4px;">
-                                Total Skins</div>
-                            <div id="detailSkinCount"
-                                style="font-size: 20px; font-family: 'Chivo Mono', monospace; color: white;"></div>
+                            <div class="ac-stat-label">Total Skins</div>
+                            <div id="detailSkinCount" class="text-mono-xl"></div>
                         </div>
                         <div class="ac-stat-box">
-                            <div
-                                style="font-size: 10px; text-transform: uppercase; color: #a1a1aa; margin-bottom: 4px;">
-                                V-Bucks</div>
-                            <div id="detailVbucks"
-                                style="font-size: 20px; font-family: 'Chivo Mono', monospace; color: #bf00ff;"></div>
+                            <div class="ac-stat-label">V-Bucks</div>
+                            <div id="detailVbucks" class="text-mono-xl-accent"></div>
                         </div>
                         <div class="ac-stat-box">
-                            <div
-                                style="font-size: 10px; text-transform: uppercase; color: #a1a1aa; margin-bottom: 4px;">
-                                Platform</div>
-                            <div id="detailPlatform"
-                                style="font-size: 16px; font-family: 'Chivo Mono', monospace; color: white;"></div>
+                            <div class="ac-stat-label">Platform</div>
+                            <div id="detailPlatform" class="text-mono-md"></div>
                         </div>
                         <div class="ac-stat-box">
-                            <div
-                                style="font-size: 10px; text-transform: uppercase; color: #a1a1aa; margin-bottom: 4px;">
-                                Safe</div>
-                            <div style="font-size: 16px; font-family: 'Chivo Mono', monospace; color: #4ade80;">Yes
-                            </div>
+                            <div class="ac-stat-label">Safe</div>
+                            <div class="text-mono-md-green">Yes</div>
                         </div>
                     </div>
 
                     <!-- Inventory -->
-                    <h4
-                        style="color: white; font-family: 'Oswald', sans-serif; font-size: 18px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
-                        Inventory Locker</h4>
+                    <h4 class="ac-section-title">Inventory Locker</h4>
                     <div class="ac-inv-grid">
                         <div class="ac-inv-card">
-                            <div style="display: flex; justify-content: space-between; color: white; font-size: 12px;">
+                            <div class="ac-inv-header">
                                 <span>Skins</span>
-                                <span style="color: #a1a1aa;">86 Total</span>
+                                <span class="ac-inventory-text">86 Total</span>
                             </div>
                             <img id="detailSkinsImg" src="" class="ac-inv-img">
                         </div>
                         <div class="ac-inv-card">
-                            <div style="display: flex; justify-content: space-between; color: white; font-size: 12px;">
+                            <div class="ac-inv-header">
                                 <span>Pickaxes</span>
-                                <span style="color: #a1a1aa;">84 Total</span>
+                                <span class="ac-inventory-text">84 Total</span>
                             </div>
                             <img id="detailPickaxesImg" src="" class="ac-inv-img">
                         </div>
                         <div class="ac-inv-card">
-                            <div style="display: flex; justify-content: space-between; color: white; font-size: 12px;">
+                            <div class="ac-inv-header">
                                 <span>Emotes</span>
-                                <span style="color: #a1a1aa;">103 Total</span>
+                                <span class="ac-inventory-text">103 Total</span>
                             </div>
                             <img id="detailEmotesImg" src="" class="ac-inv-img">
                         </div>
                         <div class="ac-inv-card">
-                            <div style="display: flex; justify-content: space-between; color: white; font-size: 12px;">
+                            <div class="ac-inv-header">
                                 <span>Gliders</span>
-                                <span style="color: #a1a1aa;">86 Total</span>
+                                <span class="ac-inventory-text">86 Total</span>
                             </div>
                             <img id="detailGlidersImg" src="" class="ac-inv-img">
                         </div>
                     </div>
 
                     <!-- Reliable Info -->
-                    <h4
-                        style="color: white; font-family: 'Oswald', sans-serif; font-size: 18px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
-                        Reliable Info</h4>
-                    <div id="detailReliableInfo"
-                        style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px;">
+                    <h4 class="ac-section-title">Reliable Info</h4>
+                    <div id="detailReliableInfo" class="ac-grid-2col">
                         <!-- Injected -->
                     </div>
 
                     <!-- History -->
-                    <h4
-                        style="color: white; font-family: 'Oswald', sans-serif; font-size: 14px; margin-bottom: 8px; margin-top: 16px;">
-                        Recent Activity</h4>
-                    <div
-                        style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
-                        <div id="detailTxHistory" style="display: flex; flex-direction: column; gap: 8px;">
+                    <h4 class="ac-history-title">Recent Activity</h4>
+                    <div class="ac-history-container">
+                        <div id="detailTxHistory" class="ac-history-list">
                             <!-- Activity Injected Here -->
                         </div>
                     </div>
@@ -701,6 +670,70 @@
             </div>
         </div>
     </div>
+
+    <!-- Templates for Dynamic Content -->
+    <template id="chase-card-template">
+        <div class="account-card group cursor-pointer">
+            <div class="account-image-wrapper">
+                <img class="chase-card-img" src="" alt="">
+            </div>
+            <div class="account-details">
+                <span class="account-stat-badge"></span>
+                <p class="account-title"></p>
+            </div>
+            <div class="account-footer">
+                <span class="account-value"></span>
+                <span class="account-est">Est.</span>
+            </div>
+        </div>
+    </template>
+
+    <template id="level-select-template">
+        <button
+            class="btn-pack-select box-border w-full rounded-xl text-left transition focus:outline-none relative flex min-h-[56px] flex-col items-center justify-center p-1">
+            <p class="font-chivoMono text-base capitalize leading-none text-primary pack-name"></p>
+            <p class="font-chivoMono text-sm font-normal leading-none text-primary">
+                <span class="pack-price"></span>
+            </p>
+        </button>
+    </template>
+
+    <template id="value-bar-template">
+        <div class="flex items-center gap-1">
+            <div class="w-24 shrink-0">
+                <p class="font-chivoMono text-xs text-primary label-text"></p>
+            </div>
+            <div class="grow">
+                <div class="flex">
+                    <div class="relative h-2 w-full overflow-hidden rounded-full bg-border-secondary">
+                        <div class="h-full rounded-full bar-blue transition-all duration-500 bar-fill"
+                            style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-12 shrink-0 text-right">
+                <p class="font-chivoMono text-xs text-primary percent-text"></p>
+            </div>
+        </div>
+    </template>
+
+    <template id="app-info-row-template">
+        <div class="ac-info-item">
+            <div class="ac-info-label"></div>
+            <div class="ac-info-val"></div>
+        </div>
+    </template>
+
+    <template id="app-history-row-template">
+        <div
+            class="flex justify-between text-sm text-white border-b border-white/5 pb-1 mb-1 last:border-0 history-row">
+            <span class="truncate pr-2 service-name"></span>
+            <div class="flex gap-2 shrink-0">
+                <span class="text-accent amount-text"></span>
+                <span class="text-tertiary date-text"></span>
+            </div>
+        </div>
+    </template>
 
     <script src="js/mock_account_data.js"></script>
     <script src="js/app.js"></script>

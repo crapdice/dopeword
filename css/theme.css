@@ -1,0 +1,380 @@
+/* =========================================
+   Account Details Modal Theme
+   ========================================= */
+
+/* Modal Overlay & Container */
+.ac-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.ac-modal-content {
+    background-color: #0f0c29;
+    width: 100%;
+    max-width: 1100px;
+    height: 85vh;
+    max-height: 800px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsive Layout Switch */
+@media (min-width: 900px) {
+    .ac-modal-content {
+        flex-direction: row;
+    }
+}
+
+/* Left Column: Hero */
+.ac-col-left {
+    width: 100%;
+    height: 250px;
+    position: relative;
+    flex-shrink: 0;
+    background: #000;
+}
+
+@media (min-width: 900px) {
+    .ac-col-left {
+        width: 350px;
+        height: 100%;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+.ac-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ac-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #0f0c29 0%, rgba(15, 12, 41, 0.4) 60%, transparent 100%);
+}
+
+.ac-hero-text {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    z-index: 10;
+}
+
+/* Right Column: Content */
+.ac-col-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #0f0c29;
+}
+
+/* Header */
+.ac-header {
+    padding: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.ac-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.ac-close-btn:hover {
+    color: white;
+}
+
+/* Scroll Area */
+.ac-scroll-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+}
+
+/* Info Grid */
+.ac-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 600px) {
+    .ac-stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.ac-stat-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+}
+
+.ac-stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #a1a1aa;
+    margin-bottom: 4px;
+}
+
+/* Inventory Grid */
+.ac-inv-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 600px) {
+    .ac-inv-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.ac-inv-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.ac-inv-header {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: 12px;
+}
+
+.ac-inv-img {
+    width: 100%;
+    height: 100px;
+    background: #000;
+    border-radius: 4px;
+    object-fit: cover;
+    margin-top: 8px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.ac-inv-card:hover .ac-inv-img {
+    opacity: 1;
+}
+
+/* Footer */
+.ac-footer {
+    padding: 16px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.ac-btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.ac-btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.ac-btn-primary {
+    background: #bf00ff;
+    /* Accent Purple */
+    border: none;
+    color: white;
+    box-shadow: 0 0 15px rgba(191, 0, 255, 0.4);
+}
+
+/* =========================================
+   Refactored Inline Utilities
+   ========================================= */
+
+.badge-legendary {
+    background: #eab308;
+    color: black;
+    font-weight: bold;
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.ac-title-large {
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    line-height: 1.2;
+    margin-top: 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.ac-header-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.text-mono-sm {
+    font-family: 'Chivo Mono', monospace;
+    font-size: 14px;
+    color: #a1a1aa;
+}
+
+.text-white-bold {
+    color: white;
+    font-weight: bold;
+}
+
+.dot-separator {
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+}
+
+.bs-price-large {
+    color: #bf00ff;
+    font-family: 'Chivo Mono', monospace;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.text-mono-xl {
+    font-size: 20px;
+    font-family: 'Chivo Mono', monospace;
+    color: white;
+}
+
+.text-mono-xl-accent {
+    font-size: 20px;
+    font-family: 'Chivo Mono', monospace;
+    color: #bf00ff;
+}
+
+.text-mono-md {
+    font-size: 16px;
+    font-family: 'Chivo Mono', monospace;
+    color: white;
+}
+
+.text-mono-md-green {
+    font-size: 16px;
+    font-family: 'Chivo Mono', monospace;
+    color: #4ade80;
+}
+
+.ac-section-title {
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 8px;
+}
+
+.ac-inventory-text {
+    color: #a1a1aa;
+}
+
+.ac-grid-2col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.ac-info-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ac-info-label {
+    font-size: 10px;
+    color: #a1a1aa;
+    text-transform: uppercase;
+}
+
+.ac-info-val {
+    font-size: 14px;
+    color: white;
+}
+
+.ac-history-title {
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    margin-bottom: 8px;
+    margin-top: 16px;
+}
+
+.ac-history-container {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ac-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Structural Helpers */
+.stage-inner {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pack-logo-small {
+    font-size: 1rem;
+    color: #666;
+}
+
+.sidebar-sticky {
+    max-height: calc(-100px + 100vh);
+}

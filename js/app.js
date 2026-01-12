@@ -75,60 +75,73 @@ function renderSidebarChaseCards() {
     const displayCards = ShopService.getPreviewCards(currentCategory, currentPack.id);
 
     // 2. Update Header
-    const headerEl = document.querySelector('.chase-header h4');
+    const headerEl = document.getElementById('chaseSectionTitle');
     if (headerEl) headerEl.textContent = `${currentPack.name} Chase Accounts`;
 
     // 3. Render
     const carouselEl = document.getElementById('chaseCarousel');
-    if (!carouselEl) return;
+    const template = document.getElementById('chase-card-template');
+    if (!carouselEl || !template) return;
 
-    // Fallback UI
+    carouselEl.innerHTML = ''; // Clear previous
+
     const cardsToRender = displayCards.length > 0 ? displayCards : [];
 
-    carouselEl.innerHTML = cardsToRender.map(card => `
-        <div class="account-card group cursor-pointer" data-id="${card.id}">
-            <div class="account-image-wrapper">
-                <img src="${card.img}" alt="${card.title}">
-            </div>
-            
-            <div class="account-details">
-                <span class="account-stat-badge">${card.stats.skins} SKINS</span>
-                <p class="account-title">${card.title}</p>
-            </div>
-            
-            <div class="account-footer">
-                <span class="account-value">${card.value}</span>
-                <span class="account-est">Est.</span>
-            </div>
-        </div>
-    `).join('');
+    cardsToRender.forEach(card => {
+        const clone = template.content.cloneNode(true);
+        const cardRoot = clone.querySelector('.account-card');
+        cardRoot.dataset.id = card.id;
+
+        const img = clone.querySelector('.chase-card-img');
+        img.src = card.img;
+        img.alt = card.title;
+
+        clone.querySelector('.account-stat-badge').textContent = `${card.stats.skins} SKINS`;
+        clone.querySelector('.account-title').textContent = card.title;
+        clone.querySelector('.account-value').textContent = card.value;
+
+        carouselEl.appendChild(clone);
+    });
 }
 
 function renderLevelSelect() {
     const packs = ShopService.getPackTiers();
-    levelSelectGrid.innerHTML = packs.map(pack => {
+    const template = document.getElementById('level-select-template');
+
+    if (!levelSelectGrid || !template) return;
+    levelSelectGrid.innerHTML = '';
+
+    packs.forEach(pack => {
+        const clone = template.content.cloneNode(true);
+        const btn = clone.querySelector('button');
+
         const isActive = currentPack.id === pack.id;
         const activeClass = isActive
             ? `gradient-border-active gradient-active-${pack.id}`
             : 'border border-primary hover:border-[#FFFFFF]';
 
-        return `
-        <button class="btn-pack-select box-border w-full rounded-xl text-left transition focus:outline-none relative flex min-h-[56px] flex-col items-center justify-center p-1 ${activeClass}" 
-                onclick="selectPack('${pack.id}')">
-            <p class="font-chivoMono text-base capitalize leading-none text-primary">${pack.name}</p>
-            <p class="font-chivoMono text-sm font-normal leading-none text-primary">
-                <span>$${pack.price.toLocaleString()}</span>
-            </p>
-        </button>
-        `;
-    }).join('');
+        // Add classes (preserving existing ones)
+        const customClasses = activeClass.split(' ');
+        btn.classList.add(...customClasses);
+
+        // Event Listener
+        btn.onclick = () => selectPack(pack.id);
+
+        clone.querySelector('.pack-name').textContent = pack.name;
+        clone.querySelector('.pack-price').textContent = `$${pack.price.toLocaleString()}`;
+
+        levelSelectGrid.appendChild(clone);
+    });
 }
 
 function renderValues() {
     const odds = ShopService.getOdds();
-    const base = currentPack.price;
+    const template = document.getElementById('value-bar-template');
 
-    valuesList.innerHTML = odds.slice(0, 5).map(config => {
+    if (!valuesList || !template) return;
+    valuesList.innerHTML = '';
+
+    odds.slice(0, 5).forEach(config => {
         // Customize label for Accounts
         let label = "Common";
         if (config.minMult >= 0.8) label = "Break Even";
@@ -137,21 +150,14 @@ function renderValues() {
         if (config.minMult >= 4.0) label = "Jackpot";
 
         const perc = config.weight;
+        const clone = template.content.cloneNode(true);
 
-        return `
-        <div class="flex items-center gap-1">
-            <div class="w-24 shrink-0"><p class="font-chivoMono text-xs text-primary">${label}</p></div>
-            <div class="grow">
-                <div class="flex">
-                    <div class="relative h-2 w-full overflow-hidden rounded-full bg-border-secondary">
-                        <div class="h-full rounded-full bar-blue transition-all duration-500" style="width: ${perc}%"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="w-12 shrink-0 text-right"><p class="font-chivoMono text-xs text-primary">${perc}%</p></div>
-        </div>
-        `;
-    }).join('');
+        clone.querySelector('.label-text').textContent = label;
+        clone.querySelector('.bar-fill').style.width = `${perc}%`;
+        clone.querySelector('.percent-text').textContent = `${perc}%`;
+
+        valuesList.appendChild(clone);
+    });
 }
 
 // --- INTERACTIONS ---
@@ -255,29 +261,40 @@ function openAccountDetailsModal(account) {
 
     // Reliable Info
     const reliableInfoEl = document.getElementById('detailReliableInfo');
-    if (reliableInfoEl && account.reliable_info) {
-        reliableInfoEl.innerHTML = Object.entries(account.reliable_info).map(([key, value]) => {
+    const infoTemplate = document.getElementById('app-info-row-template');
+
+    if (reliableInfoEl && infoTemplate && account.reliable_info) {
+        reliableInfoEl.innerHTML = '';
+        Object.entries(account.reliable_info).forEach(([key, value]) => {
             const formattedKey = key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-            return `
-                <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
-                    <div style="font-size: 10px; color: #a1a1aa; text-transform: uppercase;">${formattedKey}</div>
-                    <div style="font-size: 14px; color: white;">${value}</div>
-                </div>
-            `;
-        }).join('');
+            const clone = infoTemplate.content.cloneNode(true);
+
+            clone.querySelector('.ac-info-label').textContent = formattedKey;
+            clone.querySelector('.ac-info-val').textContent = value;
+
+            reliableInfoEl.appendChild(clone);
+        });
     }
 
     // Transactions
     const txHistoryEl = document.getElementById('detailTxHistory');
-    txHistoryEl.innerHTML = account.transaction_history.map(tx => `
-        <div class="flex justify-between text-sm text-white border-b border-white/5 pb-1 mb-1 last:border-0">
-            <span class="truncate pr-2" title="${tx.service}">${tx.service}</span>
-            <div class="flex gap-2 shrink-0">
-                <span class="text-accent">${tx.amount}</span>
-                <span class="text-tertiary">${tx.date}</span>
-            </div>
-        </div>
-    `).join('');
+    const historyTemplate = document.getElementById('app-history-row-template');
+
+    if (txHistoryEl && historyTemplate) {
+        txHistoryEl.innerHTML = '';
+        account.transaction_history.forEach(tx => {
+            const clone = historyTemplate.content.cloneNode(true);
+
+            const svc = clone.querySelector('.service-name');
+            svc.textContent = tx.service;
+            svc.title = tx.service;
+
+            clone.querySelector('.amount-text').textContent = tx.amount;
+            clone.querySelector('.date-text').textContent = tx.date;
+
+            txHistoryEl.appendChild(clone);
+        });
+    }
 
     accountDetailsModal.classList.remove('hidden');
 }

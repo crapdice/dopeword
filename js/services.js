@@ -82,7 +82,7 @@ function generateAccount(pack, valueMultiplier) {
 
     const fg = 'FFFFFF';
     const text = mainSkin.replace(/ /g, '+');
-    const img = `https://placehold.co/400x560/${bg}/${fg}?text=${text}`;
+    const img = 'assets/skins.png';
 
     return {
         id: crypto.randomUUID(),
